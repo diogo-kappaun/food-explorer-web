@@ -11,6 +11,7 @@ import * as Input from '../components/Input'
 import { Button } from '../components/Button'
 import { ButtonText } from '../components/ButtonText'
 import { Logo } from '../components/Logo'
+import { ThemeToggler } from '../components/ThemeToggler'
 
 export function SignUp() {
   return (
@@ -81,6 +82,8 @@ export function SignUp() {
           </span>
         </Form.Root>
       </div>
+
+      <ThemeToggler />
     </div>
   )
 }
