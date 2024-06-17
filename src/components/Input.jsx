@@ -8,7 +8,7 @@ export function Control(props) {
   return (
     <input
       {...props}
-      className="flex-1 bg-transparent placeholder-muted-foreground outline-none"
+      className="w-full flex-1 bg-transparent placeholder-muted-foreground outline-none"
     />
   )
 }
