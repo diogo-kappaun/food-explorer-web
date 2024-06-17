@@ -1,13 +1,26 @@
 import { twMerge } from 'tailwind-merge'
+import { tv } from 'tailwind-variants'
 
-export function Button(props) {
+export function Button({ variant = 'primary', ...props }) {
+  const button = tv({
+    base: [
+      'rounded-md text-sm font-medium ',
+      'transition-colors disabled:pointer-events-none disabled:opacity-50',
+    ],
+
+    variants: {
+      variant: {
+        primary:
+          'hover:bg-primary/90 h-9 w-full px-4 py-2 bg-primary text-primary-foreground shadow',
+        ghost: '',
+      },
+    },
+  })
+
   return (
     <button
       {...props}
-      className={twMerge(
-        'h-9 w-full rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 disabled:pointer-events-none disabled:opacity-50',
-        props.className,
-      )}
+      className={twMerge(button({ variant }), props.className)}
     />
   )
 }
