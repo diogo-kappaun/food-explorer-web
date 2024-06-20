@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'sonner'
 import { api } from '../services/api'
 
 import { PiEye, PiEyeClosed } from 'react-icons/pi'
@@ -44,12 +44,19 @@ export function SignUp() {
       setIsCreating(false)
       return toast.error(
         'O nome deve conter apenas letras, espaços, hífens e apósotolos!',
+        {
+          duration: 5000,
+          description: '👉🏻 Exemplo: Food Explorer',
+        },
       )
     }
 
     if (!regexMail.test(email)) {
       setIsCreating(false)
-      return toast.error('O e-mail digitado possui um formato inválido!')
+      return toast.error('O e-mail digitado possui um formato inválido!', {
+        duration: 5000,
+        description: '👉🏻 Exemplo: user@foodexplorer.com',
+      })
     }
 
     if (password.length < 8) {
@@ -61,6 +68,10 @@ export function SignUp() {
       setIsCreating(false)
       return toast.error(
         'A senha deve conter pelo menos uma letra minúscula, maiúscula, um dígito (0-9) e caracteres especiais (@$!%*?&).',
+        {
+          duration: 5000,
+          description: '👉🏻 Exemplo: FoodExeplorer123!',
+        },
       )
     }
 
@@ -68,7 +79,7 @@ export function SignUp() {
       .post('/users', { name, email, password })
       .then(() => {
         toast.success('Usuário cadastrado com sucesso!')
-        navigate(-1)
+        navigate('/')
         setIsCreating(false)
       })
       .catch((error) => {
