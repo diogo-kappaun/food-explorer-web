@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: 'Instrument Sans, sans-serif',
+        sans: 'Inter, sans-serif',
       },
       colors: {
         border: 'hsl(var(--border))',
