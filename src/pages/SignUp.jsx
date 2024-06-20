@@ -1,6 +1,6 @@
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import { api } from '../services/api'
 
 import { PiEye, PiEyeClosed } from 'react-icons/pi'
@@ -19,6 +19,7 @@ export function SignUp() {
   const [password, setPassword] = useState('')
 
   const [isVisible, setIsVisible] = useState(false)
+  const [isCreating, setIsCreating] = useState(false)
 
   const navigate = useNavigate()
 
@@ -28,29 +29,36 @@ export function SignUp() {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
   function handleSignUp() {
+    setIsCreating(true)
     if (!name || !email || !password) {
+      setIsCreating(false)
       return toast.error('Preencha todos os campos!')
     }
 
     if (name.length < 2 || name.length > 50) {
+      setIsCreating(false)
       return toast.error('O nome deve ter entre 2 a 50 caracteres!')
     }
 
     if (!regexName.test(name)) {
+      setIsCreating(false)
       return toast.error(
         'O nome deve conter apenas letras, espaços, hífens e apósotolos!',
       )
     }
 
     if (!regexMail.test(email)) {
+      setIsCreating(false)
       return toast.error('O e-mail digitado possui um formato inválido!')
     }
 
     if (password.length < 8) {
+      setIsCreating(false)
       return toast.error('A senha deve conter no mínimo 8+ caracteres!')
     }
 
     if (!regexPassword.test(password)) {
+      setIsCreating(false)
       return toast.error(
         'A senha deve conter pelo menos uma letra minúscula, maiúscula, um dígito (0-9) e caracteres especiais (@$!%*?&).',
       )
@@ -61,12 +69,15 @@ export function SignUp() {
       .then(() => {
         toast.success('Usuário cadastrado com sucesso!')
         navigate(-1)
+        setIsCreating(false)
       })
       .catch((error) => {
         if (error.response) {
           toast.error(error.response.data.message)
+          setIsCreating(false)
         } else {
           toast.error('Não foi possível realizar o cadastro!')
+          setIsCreating(false)
         }
       })
   }
@@ -139,6 +150,7 @@ export function SignUp() {
           </Form.Field>
 
           <Button
+            disabled={isCreating}
             className="mt-4"
             form="signup"
             type="button"
