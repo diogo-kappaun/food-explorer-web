@@ -1,9 +1,9 @@
-import {
-  PiEnvelopeSimple,
-  PiEye,
-  PiLockKey,
-  PiUserCircle,
-} from 'react-icons/pi'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { api } from '../services/api'
+
+import { PiEye, PiEyeClosed } from 'react-icons/pi'
 
 import * as Form from '../components/Form'
 import * as Input from '../components/Input'
@@ -14,6 +14,67 @@ import { Logo } from '../components/Logo'
 import { ThemeToggler } from '../components/ThemeToggler'
 
 export function SignUp() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const [isVisible, setIsVisible] = useState(false)
+
+  const navigate = useNavigate()
+
+  const regexName = /^[a-zA-ZÀ-ÿ' -]+$/
+  const regexMail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/
+  const regexPassword =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+
+  function handleSignUp() {
+    if (!name || !email || !password) {
+      return toast.error('Preencha todos os campos!')
+    }
+
+    if (name.length < 2 || name.length > 50) {
+      return toast.error('O nome deve ter entre 2 a 50 caracteres!')
+    }
+
+    if (!regexName.test(name)) {
+      return toast.error(
+        'O nome deve conter apenas letras, espaços, hífens e apósotolos!',
+      )
+    }
+
+    if (!regexMail.test(email)) {
+      return toast.error('O e-mail digitado possui um formato inválido!')
+    }
+
+    if (password.length < 8) {
+      return toast.error('A senha deve conter no mínimo 8+ caracteres!')
+    }
+
+    if (!regexPassword.test(password)) {
+      return toast.error(
+        'A senha deve conter pelo menos uma letra minúscula, maiúscula, um dígito (0-9) e caracteres especiais (@$!%*?&).',
+      )
+    }
+
+    api
+      .post('/users', { name, email, password })
+      .then(() => {
+        toast.success('Usuário cadastrado com sucesso!')
+        navigate(-1)
+      })
+      .catch((error) => {
+        if (error.response) {
+          toast.error(error.response.data.message)
+        } else {
+          toast.error('Não foi possível realizar o cadastro!')
+        }
+      })
+  }
+
+  function handlePasswordView() {
+    setIsVisible(!isVisible)
+  }
+
   return (
     <div className="h-screen">
       <img src="" alt="" />
@@ -29,17 +90,15 @@ export function SignUp() {
           </p>
         </div>
 
-        <Form.Root>
+        <Form.Root id="signup">
           <Form.Field>
             <Form.Label htmlFor="name">Nome completo</Form.Label>
             <Input.Root>
-              <Input.Prefix>
-                <PiUserCircle size={16} />
-              </Input.Prefix>
               <Input.Control
                 id="name"
                 type="text"
                 placeholder="Insira seu nome"
+                onChange={(e) => setName(e.target.value)}
               />
             </Input.Root>
           </Form.Field>
@@ -47,13 +106,11 @@ export function SignUp() {
           <Form.Field>
             <Form.Label htmlFor="email">Endereço de e-mail</Form.Label>
             <Input.Root>
-              <Input.Prefix>
-                <PiEnvelopeSimple size={16} />
-              </Input.Prefix>
               <Input.Control
                 id="email"
                 type="text"
                 placeholder="Insira seu e-mail"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Input.Root>
           </Form.Field>
@@ -61,24 +118,37 @@ export function SignUp() {
           <Form.Field>
             <Form.Label htmlFor="password">Senha</Form.Label>
             <Input.Root>
-              <Input.Prefix>
-                <PiLockKey size={16} />
-              </Input.Prefix>
               <Input.Control
                 id="password"
-                type="password"
+                type={isVisible ? 'text' : 'password'}
                 placeholder="Insira sua senha"
+                onChange={(e) => setPassword(e.target.value)}
               />
-              <Input.Prefix>
-                <PiEye size={16} />
+              <Input.Prefix className="cursor-pointer">
+                {password ? (
+                  isVisible ? (
+                    <PiEye size={18} onClick={handlePasswordView} />
+                  ) : (
+                    <PiEyeClosed size={18} onClick={handlePasswordView} />
+                  )
+                ) : (
+                  ''
+                )}
               </Input.Prefix>
             </Input.Root>
           </Form.Field>
 
-          <Button className="mt-4">Cadastrar</Button>
+          <Button
+            className="mt-4"
+            form="signup"
+            type="button"
+            onClick={handleSignUp}
+          >
+            Cadastrar
+          </Button>
 
           <span className="flex flex-wrap items-center justify-center gap-1 text-sm text-card-foreground">
-            Já tem uma conta? <ButtonText>Entre agora!</ButtonText>
+            Já tem uma conta? <ButtonText to="/">Entre agora!</ButtonText>
           </span>
         </Form.Root>
       </div>
