@@ -10,7 +10,7 @@ export function Root(props) {
   return (
     <form
       {...props}
-      className="flex w-full flex-col gap-3 text-card-foreground"
+      className="flex w-full flex-col gap-4 text-card-foreground"
     />
   )
 }

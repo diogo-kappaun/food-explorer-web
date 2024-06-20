@@ -1,7 +1,12 @@
 import { twMerge } from 'tailwind-merge'
 
 export function Prefix(props) {
-  return <div {...props} className="text-muted-foreground" />
+  return (
+    <div
+      {...props}
+      className={(twMerge('text-muted-foreground'), props.className)}
+    />
+  )
 }
 
 export function Control(props) {
@@ -18,7 +23,7 @@ export function Root(props) {
     <div
       {...props}
       className={twMerge(
-        'flex h-9 w-full items-center gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm',
+        'flex h-10 w-full items-center gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm',
         'focus-within:ring-1 focus-within:ring-ring',
       )}
     />
