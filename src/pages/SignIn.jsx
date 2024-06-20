@@ -61,7 +61,8 @@ export function SignIn() {
           <Button>Continuar</Button>
 
           <span className="flex flex-wrap items-center justify-center gap-1 text-sm text-card-foreground">
-            Ainda não tem uma conta? <ButtonText>Crie agora!</ButtonText>
+            Ainda não tem uma conta?{' '}
+            <ButtonText to="/signup">Crie agora!</ButtonText>
           </span>
         </Form.Root>
       </div>
