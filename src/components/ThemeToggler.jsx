@@ -23,7 +23,7 @@ export function ThemeToggler() {
       variant="ghost"
       className="absolute right-4 top-4 text-foreground"
     >
-      {theme ? <PiMoon size={16} /> : <PiSun size={16} />}
+      {theme ? <PiMoon size={18} /> : <PiSun size={18} />}
     </Button>
   )
 }
