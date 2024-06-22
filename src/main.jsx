@@ -5,11 +5,14 @@ import './global.css'
 import './utils/theme'
 
 import { Toast } from './components/Toast'
+import { AuthProvider } from './hooks/auth'
 import { Routes } from './routes'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Routes />
-    <Toast />
+    <AuthProvider>
+      <Routes />
+      <Toast />
+    </AuthProvider>
   </React.StrictMode>,
 )
