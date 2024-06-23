@@ -36,10 +36,8 @@ export function SignIn() {
   function handlePasswordView() {
     setIsVisible(!isVisible)
   }
-
   return (
-    <div className="h-screen">
-      <img src="" alt="" />
+    <div className="md:grid-cols-auth h-screen md:grid">
       <div className="flex h-full flex-col items-center justify-center gap-12 p-12">
         <Logo />
 
@@ -100,6 +98,8 @@ export function SignIn() {
           </span>
         </Form.Root>
       </div>
+
+      <div className="bg-auth-banner hidden h-screen bg-cover bg-center md:block" />
 
       <ThemeToggler />
     </div>

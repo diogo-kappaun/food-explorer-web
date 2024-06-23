@@ -46,6 +46,12 @@ export default {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
       },
+      backgroundImage: {
+        'auth-banner': "url('./src/assets/auth-banner.jpg')",
+      },
+      gridTemplateColumns: {
+        auth: '35rem 1fr',
+      },
     },
   },
   plugins: [],
