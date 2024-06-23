@@ -21,7 +21,7 @@ export function ThemeToggler() {
     <Button
       onClick={toggleTheme}
       variant="ghost"
-      className="absolute right-4 top-4 text-foreground"
+      className="absolute left-4 top-4 text-foreground"
     >
       {theme ? <PiMoon size={18} /> : <PiSun size={18} />}
     </Button>
