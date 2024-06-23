@@ -98,9 +98,9 @@ export function SignUp() {
   }
 
   return (
-    <div className="md:grid-cols-auth h-screen md:grid">
+    <div className="h-screen md:grid md:grid-cols-auth">
       <div className="flex h-full flex-col items-center justify-center gap-12 p-12">
-        <Logo />
+        <Logo className="w-8" />
 
         <div className="flex flex-col items-center gap-2">
           <h1 className="text-center text-4xl font-bold text-foreground">
@@ -175,7 +175,7 @@ export function SignUp() {
         </Form.Root>
       </div>
 
-      <div className="bg-auth-banner hidden h-screen bg-cover bg-center md:block" />
+      <div className="hidden h-screen bg-auth-banner bg-cover bg-center md:block" />
 
       <ThemeToggler />
     </div>
