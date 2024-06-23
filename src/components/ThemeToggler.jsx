@@ -7,12 +7,16 @@ export function ThemeToggler() {
     document.documentElement.classList.contains('dark'),
   )
 
-  theme ? (localStorage.theme = 'dark') : (localStorage.theme = 'light')
+  theme
+    ? localStorage.setItem('@foodexplorer:theme', 'dark')
+    : localStorage.setItem('@foodexplorer:theme', 'light')
 
   function toggleTheme() {
     document.documentElement.classList.toggle('dark')
 
-    theme ? (localStorage.theme = 'dark') : (localStorage.theme = 'light')
+    theme
+      ? localStorage.setItem('@foodexplorer:theme', 'dark')
+      : localStorage.setItem('@foodexplorer:theme', 'light')
 
     setTheme(!theme)
   }
