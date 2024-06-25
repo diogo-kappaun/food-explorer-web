@@ -1,12 +1,7 @@
 import { twMerge } from 'tailwind-merge'
 
 export function Prefix(props) {
-  return (
-    <div
-      {...props}
-      className={(twMerge('text-muted-foreground'), props.className)}
-    />
-  )
+  return <div {...props} className="text-muted-foreground" />
 }
 
 export function Control(props) {
