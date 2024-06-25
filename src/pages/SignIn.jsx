@@ -8,7 +8,6 @@ import * as Input from '../components/Input'
 import { Button } from '../components/Button'
 import { ButtonText } from '../components/ButtonText'
 import { Logo } from '../components/Logo'
-import { ThemeToggler } from '../components/ThemeToggler'
 import { useAuth } from '../hooks/auth'
 
 export function SignIn() {
@@ -38,7 +37,7 @@ export function SignIn() {
   }
   return (
     <div className="h-screen md:grid md:grid-cols-auth">
-      <div className="flex h-full flex-col items-center justify-center gap-12 p-12">
+      <div className="flex h-full flex-col items-center justify-center gap-12 p-8 sm:p-12">
         <Logo className="w-8" />
 
         <div className="flex flex-col items-center gap-2">
@@ -100,8 +99,6 @@ export function SignIn() {
       </div>
 
       <div className="hidden h-screen bg-auth-banner bg-cover bg-center md:block" />
-
-      <ThemeToggler />
     </div>
   )
 }
