@@ -51,6 +51,8 @@ export default {
       },
       gridTemplateColumns: {
         auth: '35rem 1fr',
+        page: 'max-content 1fr',
+        profile: 'max-content 1fr min-content',
       },
     },
   },
