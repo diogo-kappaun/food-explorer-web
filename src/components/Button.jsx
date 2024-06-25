@@ -20,6 +20,7 @@ export function Button({ variant = 'primary', ...props }) {
   return (
     <button
       {...props}
+      type="button"
       className={twMerge(button({ variant }), props.className)}
     />
   )
