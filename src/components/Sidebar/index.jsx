@@ -50,7 +50,7 @@ export function Sidebar() {
             </Input.Root>
           </Form.Root>
 
-          <Nav.Root>
+          <Nav.Root to="/">
             <Nav.Prefix>
               <PiHouse size={20} />
             </Nav.Prefix>
