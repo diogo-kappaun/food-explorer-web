@@ -15,6 +15,7 @@ import * as Nav from './Nav'
 
 import { Button } from '../Button'
 import { Logo } from '../Logo'
+import { Separator } from '../Separator'
 import { Menu } from './Menu'
 import { Profile } from './Profile'
 
@@ -87,7 +88,7 @@ export function Sidebar() {
           </Nav.Root>
         </div>
 
-        <div className="my-2 border-t"></div>
+        <Separator className="my-2" />
 
         <Profile state={open} />
       </Collapsible.Content>
