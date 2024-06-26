@@ -24,7 +24,7 @@ export function Name({ state, ...props }) {
       className={`flex flex-1 items-center justify-between font-normal transition-colors ${state ? 'inline' : 'hidden'}`}
     >
       {props.name}
-      <PiCaretDown className="text-muted-foreground" />
+      <PiCaretDown className="mx-3 text-muted-foreground" />
     </span>
   )
 }
