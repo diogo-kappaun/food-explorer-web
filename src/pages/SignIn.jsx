@@ -36,8 +36,8 @@ export function SignIn() {
     setIsVisible(!isVisible)
   }
   return (
-    <div className="h-screen md:grid md:grid-cols-auth">
-      <div className="flex h-full flex-col items-center justify-center gap-12 p-8 sm:p-12">
+    <div className="h-screen lg:grid lg:grid-cols-auth">
+      <div className="mx-auto flex h-full max-w-[35rem] flex-col items-center justify-center gap-12 p-8 sm:p-12 lg:w-full">
         <Logo className="w-8" />
 
         <div className="flex flex-col items-center gap-2">
@@ -98,7 +98,7 @@ export function SignIn() {
         </Form.Root>
       </div>
 
-      <div className="hidden h-screen bg-auth-banner bg-cover bg-center md:block" />
+      <div className="hidden h-screen bg-auth-banner bg-cover bg-center lg:block" />
     </div>
   )
 }
