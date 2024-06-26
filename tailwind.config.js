@@ -49,6 +49,9 @@ export default {
       backgroundImage: {
         'auth-banner': "url('./src/assets/auth-banner.jpg')",
       },
+      gridTemplateRows: {
+        page: '3.875rem 1fr',
+      },
       gridTemplateColumns: {
         auth: '35rem 1fr',
         page: 'max-content 1fr',
