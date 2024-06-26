@@ -1,8 +1,9 @@
 import { PiCaretDown } from 'react-icons/pi'
+import { Link } from 'react-router-dom'
 
 export function Root({ ...props }) {
   return (
-    <a
+    <Link
       className="group/item flex cursor-pointer items-center gap-3 rounded-md transition-colors hover:bg-muted/20"
       {...props}
     />
