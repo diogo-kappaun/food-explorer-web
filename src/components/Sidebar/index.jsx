@@ -1,5 +1,4 @@
-import autoAnimate from '@formkit/auto-animate'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import {
   PiGear,
   PiHouse,
@@ -22,17 +21,8 @@ import { Profile } from './Profile'
 export function Sidebar() {
   const [open, setOpen] = useState(false)
 
-  const parent = useRef(null)
-
-  useEffect(() => {
-    parent.current && autoAnimate(parent.current)
-  }, [parent])
-
   return (
-    <Collapsible.Root
-      className="fixed left-0 right-0 top-0 z-10 flex flex-col border-b p-4 data-[state=open]:bottom-0 lg:relative lg:right-auto lg:border-r lg:data-[state=closed]:bottom-0"
-      ref={parent}
-    >
+    <Collapsible.Root className="fixed left-0 right-0 top-0 z-10 flex flex-col border-b p-4 data-[state=open]:bottom-0 lg:relative lg:right-auto lg:border-r lg:data-[state=closed]:bottom-0">
       <div className="flex h-8 items-center justify-between rounded-md lg:fixed lg:top-3 lg:h-10 lg:border">
         <Logo className="w-6 lg:hidden" />
         <Collapsible.Trigger asChild>
