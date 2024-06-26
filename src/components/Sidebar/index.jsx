@@ -19,7 +19,7 @@ import { Menu } from './Menu'
 import { Profile } from './Profile'
 
 export function Sidebar() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
 
   return (
     <Collapsible.Root className="fixed left-0 right-0 top-0 z-10 flex flex-col border-b p-4 data-[state=open]:bottom-0 lg:relative lg:right-auto lg:border-r lg:data-[state=closed]:bottom-0">
@@ -79,7 +79,7 @@ export function Sidebar() {
             </Nav.Prefix>
             <Nav.Name state={open} name="Suporte" />
           </Nav.Root>
-          <Nav.Root>
+          <Nav.Root to="/settings">
             <Nav.Prefix>
               <PiGear size={20} />
             </Nav.Prefix>
