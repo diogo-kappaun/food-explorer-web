@@ -11,14 +11,12 @@ export function Profile({ state }) {
 
   const fullname = user.name.split(' ')
   const name = fullname[0]
-  const lastname = fullname[fullname.length - 1]
+  const lastname = fullname.length !== 1 ? fullname[fullname.length - 1] : ''
 
   const [email] = user.email.split('@')
 
-  console.log(user.avatar_id)
-
   return (
-    <div className="bg- mt-2 grid w-full grid-cols-profile items-center gap-4 self-end lg:flex lg:justify-center">
+    <div className="mt-2 grid w-full grid-cols-profile items-center gap-4 self-end lg:flex">
       <img
         src={
           user.avatar_id
@@ -27,12 +25,12 @@ export function Profile({ state }) {
               }`
             : `${placeholder}`
         }
-        alt="Foto de Diogo Kappaun"
+        alt={`Foto de ${user.name}`}
         className="h-10 w-10 rounded-full bg-background"
       />
 
       <div
-        className={`pointer-events-none flex flex-col truncate ${state ? 'flex' : 'hidden'}`}
+        className={`pointer-events-none flex w-full flex-col truncate ${state ? 'flex' : 'hidden'}`}
       >
         <div className="flex gap-1 truncate text-sm font-semibold">
           <span>{name}</span>
