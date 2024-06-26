@@ -9,8 +9,8 @@ export function Field(props) {
 export function Root(props) {
   return (
     <form
-      {...props}
       className="flex w-full flex-col gap-4 text-card-foreground"
+      {...props}
     />
   )
 }
