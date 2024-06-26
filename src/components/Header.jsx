@@ -5,12 +5,14 @@ import * as Input from './Input'
 
 import { Logo } from './Logo'
 
-export function Header() {
+export function Header({ noInput = false }) {
   return (
     <div className="relative col-span-2 hidden w-full items-center border-y lg:flex">
       <Logo className="absolute left-[72px] w-6" />
 
-      <Form.Root className="mx-auto hidden w-[30rem] lg:flex">
+      <Form.Root
+        className={`mx-auto hidden w-[30rem] lg:flex ${noInput ? 'lg:hidden' : ''}`}
+      >
         <Input.Root>
           <Input.Prefix>
             <PiMagnifyingGlass size={20} />
