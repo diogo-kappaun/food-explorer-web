@@ -20,7 +20,7 @@ export function Person() {
 
   const [newIsVisible, setNewIsVisible] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
-  const [isCreating, setIsCreating] = useState(false)
+  const [isUpdating, setIsUpdating] = useState(false)
 
   const regexName = /^[a-zA-ZÀ-ÿ' -]+$/
   const regexMail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,}$/
@@ -28,15 +28,15 @@ export function Person() {
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
 
   async function handleUpdate() {
-    setIsCreating(true)
+    setIsUpdating(true)
     if (name) {
       if (name.length < 2 || name.length > 50) {
-        setIsCreating(false)
+        setIsUpdating(false)
         return toast.error('O nome deve ter entre 2 a 50 caracteres!')
       }
 
       if (!regexName.test(name)) {
-        setIsCreating(false)
+        setIsUpdating(false)
         return toast.error(
           'O nome deve conter apenas letras, espaços, hífens e apósotolos!',
           {
@@ -49,7 +49,7 @@ export function Person() {
 
     if (email) {
       if (!regexMail.test(email)) {
-        setIsCreating(false)
+        setIsUpdating(false)
         return toast.error('O e-mail digitado possui um formato inválido!', {
           duration: 5000,
           description: '👉🏻 Exemplo: user@foodexplorer.com',
@@ -58,14 +58,14 @@ export function Person() {
     }
 
     if (currentPassword && !newPassword) {
-      setIsCreating(false)
+      setIsUpdating(false)
       return toast.error('Nova senha não informada!', {
         description: '👉🏻 Infome sua nova senha',
       })
     }
 
     if (!currentPassword && newPassword) {
-      setIsCreating(false)
+      setIsUpdating(false)
       return toast.error('Senha atual não informada!', {
         description: '👉🏻 Infome sua senha atual',
       })
@@ -73,12 +73,12 @@ export function Person() {
 
     if (currentPassword && newPassword) {
       if (newPassword.length < 8) {
-        setIsCreating(false)
+        setIsUpdating(false)
         return toast.error('A senha deve conter no mínimo 8+ caracteres!')
       }
 
       if (!regexPassword.test(newPassword)) {
-        setIsCreating(false)
+        setIsUpdating(false)
         return toast.error(
           'A senha deve conter pelo menos uma letra minúscula, maiúscula, um dígito (0-9) e caracteres especiais (@$!%*?&).',
           {
@@ -101,20 +101,20 @@ export function Person() {
       api
         .put('/users', userUpdate)
         .then(() => {
-          setIsCreating(false)
+          setIsUpdating(false)
           return toast.success('Usuário atualizado com sucesso!')
         })
         .catch((error) => {
           if (error.response) {
             toast.error(error.response.data.message)
-            setIsCreating(false)
+            setIsUpdating(false)
           } else {
-            toast.error('Não foi possível realizar o cadastro!')
-            setIsCreating(false)
+            toast.error('Não foi possível atualizar o perfil!')
+            setIsUpdating(false)
           }
         })
     } else {
-      setIsCreating(false)
+      setIsUpdating(false)
       return toast.error('Preencha ao menos um campo!')
     }
   }
@@ -141,7 +141,7 @@ export function Person() {
             Cancelar
           </Button>
           <Button
-            disabled={isCreating}
+            disabled={isUpdating}
             form="update"
             type="button"
             onClick={handleUpdate}
