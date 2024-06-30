@@ -8,7 +8,7 @@ export function Settings() {
       <Header noInput />
       <Sidebar />
 
-      <div className="p-8 pb-12">
+      <div className="px-8 pb-12 pt-24 lg:pt-8">
         <h1 className="text-3xl font-medium">Configurações</h1>
 
         <SettingsTabs />
