@@ -1,5 +1,7 @@
 export function Label(props) {
-  return <label {...props} className="text-sm font-medium" />
+  return (
+    <label {...props} className="pointer select-none text-sm font-medium" />
+  )
 }
 
 export function Field(props) {
