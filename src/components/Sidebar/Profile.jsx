@@ -1,10 +1,9 @@
 import { PiSignOut } from 'react-icons/pi'
 
-import { Button } from '../Button'
-
 import { useAuth } from '../../hooks/auth'
 
 import placeholder from '../../assets/placeholder.png'
+import { ButtonText } from '../ButtonText'
 
 export function Profile({ state }) {
   const { user, signOut } = useAuth()
@@ -39,13 +38,13 @@ export function Profile({ state }) {
         <span className="truncate text-sm text-muted-foreground">{email}</span>
       </div>
 
-      <Button
+      <ButtonText
         onClick={signOut}
-        variant="ghost"
+        to="/"
         className={`p-2 hover:bg-muted/20 ${state ? 'flex' : 'hidden'}`}
       >
         <PiSignOut size={20} className="text-muted-foreground" />
-      </Button>
+      </ButtonText>
     </div>
   )
 }
