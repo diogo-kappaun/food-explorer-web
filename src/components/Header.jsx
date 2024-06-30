@@ -7,7 +7,7 @@ import { Logo } from './Logo'
 
 export function Header({ noInput = false }) {
   return (
-    <div className="relative col-span-2 hidden w-full items-center border-y lg:flex">
+    <div className="relative col-span-2 hidden h-16 w-full items-center border-y lg:flex">
       <Logo className="absolute left-[72px] w-6" />
 
       <Form.Root
