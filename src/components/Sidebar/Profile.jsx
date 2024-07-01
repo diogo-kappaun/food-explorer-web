@@ -8,6 +8,12 @@ import { ButtonText } from '../ButtonText'
 export function Profile({ state }) {
   const { user, signOut } = useAuth()
 
+  const avatarUrl = user.avatar_id
+    ? `https://res.cloudinary.com/diogofoodexplorer/image/upload/${
+        user.avatar_id
+      }`
+    : `${placeholder}`
+
   const fullname = user.name.split(' ')
   const name = fullname[0]
   const lastname = fullname.length !== 1 ? fullname[fullname.length - 1] : ''
@@ -17,13 +23,7 @@ export function Profile({ state }) {
   return (
     <div className="mt-2 grid w-full grid-cols-profile items-center gap-4 self-end lg:flex">
       <img
-        src={
-          user.avatar_id
-            ? `https://res.cloudinary.com/diogofoodexplorer/image/upload/${
-                user.avatar_id
-              }`
-            : `${placeholder}`
-        }
+        src={avatarUrl}
         alt={`Foto de ${user.name}`}
         className="h-10 w-10 rounded-full bg-background"
       />
