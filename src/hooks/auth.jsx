@@ -32,6 +32,30 @@ export function AuthProvider({ children }) {
       })
   }
 
+  async function updateAvatar({ avatarFile }) {
+    try {
+      const fileUploadForm = new FormData()
+      fileUploadForm.append('avatar', avatarFile)
+
+      const user = data.user
+
+      const response = await api.patch('/users/avatar', fileUploadForm)
+
+      user.avatar_id = response.data
+
+      localStorage.setItem('@foodexplorer:user', JSON.stringify(user))
+
+      setData({ user, token: data.token })
+    } catch (error) {
+      if (error.response) {
+        return toast.error(error.response.data.message)
+      } else {
+        console.log(error)
+        return toast.error('Não foi possível realizar o login!')
+      }
+    }
+  }
+
   function signOut() {
     localStorage.removeItem('@foodexplorer:user')
 
@@ -53,7 +77,9 @@ export function AuthProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, user: data.user }}>
+    <AuthContext.Provider
+      value={{ signIn, signOut, updateAvatar, user: data.user }}
+    >
       {children}
     </AuthContext.Provider>
   )
