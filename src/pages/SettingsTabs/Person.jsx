@@ -1,14 +1,15 @@
 import { useState } from 'react'
 import { PiEye, PiEyeClosed } from 'react-icons/pi'
-import { useAuth } from '../hooks/auth'
-
-import * as Form from '../components/Form'
-import * as Input from '../components/Input'
-
 import { toast } from 'sonner'
-import { Button } from '../components/Button'
-import { Separator } from '../components/Separator'
-import { api } from '../services/api'
+
+import { useAuth } from '../../hooks/auth'
+import { api } from '../../services/api'
+
+import * as Form from '../../components/Form'
+import * as Input from '../../components/Input'
+
+import { Button } from '../../components/Button'
+import { Separator } from '../../components/Separator'
 
 export function Person() {
   const { user } = useAuth()

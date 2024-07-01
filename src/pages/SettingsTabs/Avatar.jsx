@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { PiCamera } from 'react-icons/pi'
 import { toast } from 'sonner'
 
-import placeholder from '../assets/placeholder.png'
+import placeholder from '../../assets/placeholder.png'
 
-import { Button } from '../components/Button'
+import { Button } from '../../components/Button'
 
-import { useAuth } from '../hooks/auth'
+import { useAuth } from '../../hooks/auth'
 
 export function Avatar() {
   const { updateAvatar, user } = useAuth()
