@@ -1,33 +1,45 @@
 import { useState } from 'react'
-import { PiMoon, PiSun } from 'react-icons/pi'
-import { Button } from './Button'
+
+import { Select } from '../components/Select'
+import { SelectItem } from '../components/Select/Item'
 
 export function ThemeToggler() {
   const [theme, setTheme] = useState(
-    document.documentElement.classList.contains('dark'),
+    localStorage.getItem('@foodexplorer:theme'),
   )
 
-  theme
-    ? localStorage.setItem('@foodexplorer:theme', 'dark')
-    : localStorage.setItem('@foodexplorer:theme', 'light')
+  function toggleTheme(themeSelected) {
+    setTheme(themeSelected)
 
-  function toggleTheme() {
-    document.documentElement.classList.toggle('dark')
-
-    theme
-      ? localStorage.setItem('@foodexplorer:theme', 'dark')
-      : localStorage.setItem('@foodexplorer:theme', 'light')
-
-    setTheme(!theme)
+    switch (themeSelected) {
+      case 'default':
+        localStorage.removeItem('@foodexplorer:theme')
+        window.matchMedia('(prefers-color-scheme: dark)').matches
+          ? document.documentElement.classList.add('dark')
+          : document.documentElement.classList.remove('dark')
+        break
+      case 'dark':
+        document.documentElement.classList.add('dark')
+        localStorage.setItem('@foodexplorer:theme', 'dark')
+        break
+      case 'light':
+        document.documentElement.classList.remove('dark')
+        localStorage.setItem('@foodexplorer:theme', 'light')
+        break
+      default:
+        break
+    }
   }
 
   return (
-    <Button
-      onClick={toggleTheme}
-      variant="ghost"
-      className="absolute left-4 top-4 text-foreground"
+    <Select
+      onValueChange={toggleTheme}
+      value={theme || ''}
+      placeholder="Selecione um tema"
     >
-      {theme ? <PiMoon size={18} /> : <PiSun size={18} />}
-    </Button>
+      <SelectItem value="default" text="Padrão" />
+      <SelectItem value="dark" text="Escuro" />
+      <SelectItem value="light" text="Claro" />
+    </Select>
   )
 }
