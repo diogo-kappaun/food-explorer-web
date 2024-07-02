@@ -1,7 +1,8 @@
 import { useState } from 'react'
 
-import { Avatar } from '../../pages/Avatar'
-import { Person } from '../../pages/Person'
+import { Avatar } from '../../pages/SettingsTabs/Avatar'
+import { Person } from '../../pages/SettingsTabs/Person'
+import { Theme } from '../../pages/SettingsTabs/Theme'
 
 import * as Tabs from '@radix-ui/react-tabs'
 
@@ -24,6 +25,7 @@ export function SettingsTabs() {
           isActive={activeTab === 'tab1'}
         />
         <TabItem value="tab2" title="Avatar" isActive={activeTab === 'tab2'} />
+        <TabItem value="tab3" title="Tema" isActive={activeTab === 'tab3'} />
       </Tabs.List>
 
       <TabContent value="tab1">
@@ -31,6 +33,9 @@ export function SettingsTabs() {
       </TabContent>
       <TabContent value="tab2">
         <Avatar />
+      </TabContent>
+      <TabContent value="tab3">
+        <Theme />
       </TabContent>
     </Tabs.Root>
   )
