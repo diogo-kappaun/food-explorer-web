@@ -11,9 +11,9 @@ export function Button({ variant = 'primary', ...props }) {
     variants: {
       variant: {
         primary:
-          'hover:bg-primary/90 h-9 w-full px-4 py-2 bg-primary text-primary-foreground shadow',
+          'hover:bg-primary/90 h-9 w-full px-4 py-2 bg-primary text-primary-foreground shadow-sm',
         secondary:
-          'hover:bg-muted/20 h-9 w-full px-4 py-2 border text-primary-foreground shadow',
+          'hover:bg-muted/20 h-9 w-full px-4 py-2 border text-foreground shadow-sm',
         ghost: '',
       },
     },
