@@ -96,6 +96,12 @@ export function SignUp() {
     setIsVisible(!isVisible)
   }
 
+  function handleEnterKey(e) {
+    if (e.key === 'Enter') {
+      handleSignUp()
+    }
+  }
+
   return (
     <div className="h-screen lg:grid lg:grid-cols-auth">
       <div className="mx-auto flex h-full max-w-[35rem] flex-col items-center justify-center gap-12 p-8 sm:p-12 lg:w-full">
@@ -119,6 +125,7 @@ export function SignUp() {
                 type="text"
                 placeholder="Insira seu nome"
                 onChange={(e) => setName(e.target.value)}
+                onKeyUp={handleEnterKey}
               />
             </Input.Root>
           </Form.Field>
@@ -131,6 +138,7 @@ export function SignUp() {
                 type="text"
                 placeholder="Insira seu e-mail"
                 onChange={(e) => setEmail(e.target.value)}
+                onKeyUp={handleEnterKey}
               />
             </Input.Root>
           </Form.Field>
@@ -143,6 +151,7 @@ export function SignUp() {
                 type={isVisible ? 'text' : 'password'}
                 placeholder="Insira sua senha"
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyUp={handleEnterKey}
               />
               <Input.Prefix className="cursor-pointer">
                 {password ? (
