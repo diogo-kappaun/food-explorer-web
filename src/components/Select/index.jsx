@@ -7,7 +7,7 @@ export function Select({ children, placeholder, ...props }) {
     <SelectPrimitive.Root {...props}>
       <SelectPrimitive.Trigger
         aria-label="Temas"
-        className="flex h-10 w-48 items-center justify-between gap-4 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm outline-none focus:ring-1 focus:ring-ring"
+        className="flex h-10 w-48 items-center justify-between gap-4 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm outline-none focus:border-primary"
       >
         <SelectPrimitive.Value placeholder={placeholder} />
         <SelectPrimitive.Icon>
