@@ -73,7 +73,7 @@ export function Sidebar() {
             <Nav.Name state={open} name="Pedidos" />
           </Nav.Root>
 
-          <Nav.Root>
+          <Nav.Root to="/newdish">
             <Nav.Prefix>
               <PiPlus size={20} />
             </Nav.Prefix>
