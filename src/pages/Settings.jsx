@@ -1,3 +1,4 @@
+import { BackButton } from '../components/BackButton'
 import { Header } from '../components/Header'
 import { Sidebar } from '../components/Sidebar'
 import { SettingsTabs } from '../components/Tabs'
@@ -9,7 +10,9 @@ export function Settings() {
       <Sidebar />
 
       <div className="px-8 pb-12 pt-24 lg:pt-8">
-        <h1 className="text-3xl font-medium">Configurações</h1>
+        <BackButton />
+
+        <h1 className="mt-3 text-3xl font-medium">Configurações</h1>
 
         <SettingsTabs />
       </div>
