@@ -18,8 +18,8 @@ export function Avatar() {
     ? `https://res.cloudinary.com/diogofoodexplorer/image/upload/${user.avatar_id}`
     : `${placeholder}`
 
-  function handleChangeAvatar(event) {
-    const file = event.target.files[0]
+  function handleChangeAvatar(e) {
+    const file = e.target.files[0]
     const maxSize = 2 * 1024 * 1024
 
     if (file.size > maxSize) {
