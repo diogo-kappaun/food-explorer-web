@@ -4,6 +4,7 @@ import {
   PiHouse,
   PiLifebuoy,
   PiMagnifyingGlass,
+  PiNewspaperClipping,
   PiPlus,
   PiStar,
 } from 'react-icons/pi'
@@ -29,7 +30,7 @@ export function Sidebar() {
         <Collapsible.Trigger asChild>
           <Button
             variant="ghost"
-            className="items-center hover:bg-muted/40 lg:flex lg:h-10 lg:w-10 lg:justify-center"
+            className="items-center lg:flex lg:h-10 lg:w-10 lg:justify-center lg:hover:bg-muted/40"
             onClick={(e) => setOpen(!open)}
           >
             <Menu state={open} />
@@ -63,6 +64,13 @@ export function Sidebar() {
               <PiStar size={20} />
             </Nav.Prefix>
             <Nav.Name state={open} name="Favoritos" />
+          </Nav.Root>
+
+          <Nav.Root>
+            <Nav.Prefix>
+              <PiNewspaperClipping size={20} />
+            </Nav.Prefix>
+            <Nav.Name state={open} name="Pedidos" />
           </Nav.Root>
 
           <Nav.Root>
