@@ -1,21 +1,24 @@
 import { BackButton } from '../components/BackButton'
+import { Container } from '../components/Container'
 import { Header } from '../components/Header'
+import { Section } from '../components/Section'
 import { Sidebar } from '../components/Sidebar'
 import { SettingsTabs } from '../components/Tabs'
+import { Title } from '../components/Title'
 
 export function Settings() {
   return (
-    <div className="min-h-screen bg-background text-foreground lg:grid lg:grid-cols-page lg:grid-rows-page">
+    <Container>
       <Header noInput />
       <Sidebar />
 
-      <div className="px-8 pb-12 pt-24 lg:pt-8">
+      <Section>
         <BackButton />
 
-        <h1 className="mt-3 text-3xl font-medium">Configurações</h1>
+        <Title>Configurações</Title>
 
         <SettingsTabs />
-      </div>
-    </div>
+      </Section>
+    </Container>
   )
 }

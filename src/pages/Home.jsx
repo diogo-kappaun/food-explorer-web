@@ -1,15 +1,17 @@
+import { Container } from '../components/Container'
 import { Header } from '../components/Header'
+import { Section } from '../components/Section'
 import { Sidebar } from '../components/Sidebar'
 
 export function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground lg:grid lg:grid-cols-page lg:grid-rows-page">
+    <Container>
       <Header />
       <Sidebar />
 
-      <div>
+      <Section>
         <h1>Home!</h1>
-      </div>
-    </div>
+      </Section>
+    </Container>
   )
 }
