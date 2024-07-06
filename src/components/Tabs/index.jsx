@@ -18,7 +18,7 @@ export function SettingsTabs() {
       onValueChange={setActiveTab}
       className="flex h-full flex-col"
     >
-      <Tabs.List className="mt-6 flex w-full items-center gap-3 border-b text-sm">
+      <Tabs.List className="flex w-full items-center gap-3 border-b text-sm">
         <TabItem
           value="tab1"
           title="Dados Pessoais"
