@@ -1,20 +1,21 @@
-import { PiArrowsOutLineVertical } from 'react-icons/pi'
+import { PiCaretDown } from 'react-icons/pi'
 
 import * as SelectPrimitive from '@radix-ui/react-select'
+import { twMerge } from 'tailwind-merge'
 
-export function Select({ children, placeholder, ...props }) {
+export function Select({ children, placeholder, className, ...props }) {
   return (
     <SelectPrimitive.Root {...props}>
       <SelectPrimitive.Trigger
         aria-label="Temas"
-        className="flex h-10 w-48 items-center justify-between gap-4 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm outline-none focus:border-primary"
+        className={twMerge(
+          'flex h-10 w-48 items-center justify-between gap-4 rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm outline-none focus:border-primary data-[placeholder]:text-muted-foreground',
+          className,
+        )}
       >
         <SelectPrimitive.Value placeholder={placeholder} />
         <SelectPrimitive.Icon>
-          <PiArrowsOutLineVertical
-            size={20}
-            className="text-muted-foreground"
-          />
+          <PiCaretDown size={16} className="text-muted-foreground" />
         </SelectPrimitive.Icon>
       </SelectPrimitive.Trigger>
       <SelectPrimitive.Portal>

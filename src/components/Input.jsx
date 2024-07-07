@@ -4,22 +4,26 @@ export function Prefix(props) {
   return <div {...props} className="text-muted-foreground" />
 }
 
-export function Control(props) {
+export function Control({ className, ...props }) {
   return (
     <input
       {...props}
-      className="w-full flex-1 bg-transparent placeholder-muted-foreground outline-none"
+      className={twMerge(
+        'w-full flex-1 bg-transparent placeholder-muted-foreground outline-none',
+        className,
+      )}
     />
   )
 }
 
-export function Root(props) {
+export function Root({ className, ...props }) {
   return (
     <div
       {...props}
       className={twMerge(
         'flex h-10 w-full items-center gap-2 rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm',
         'focus-within:ring-1 focus-within:ring-ring',
+        className,
       )}
     />
   )
