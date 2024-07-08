@@ -5,7 +5,7 @@ export function SelectItem({ text, ...props }) {
   return (
     <SelectPrimitive.Item
       {...props}
-      className="flex items-center justify-between px-3 py-1 data-[highlighted]:bg-accent"
+      className="flex items-center justify-between px-3 py-1 outline-none data-[highlighted]:bg-accent"
     >
       <SelectPrimitive.ItemText asChild>
         <span>{text}</span>
