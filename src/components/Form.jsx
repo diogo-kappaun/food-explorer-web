@@ -5,7 +5,7 @@ export function Label(props) {
 }
 
 export function Field(props) {
-  return <div {...props} className="flex flex-col gap-1" />
+  return <div {...props} className="flex flex-1 flex-col gap-1" />
 }
 
 export function Root(props) {
