@@ -183,7 +183,7 @@ export function SignUp() {
         </Form.Root>
       </div>
 
-      <div className="hidden h-screen bg-auth-banner bg-cover bg-center lg:block" />
+      <div className="hidden h-screen bg-[url('/src/assets/auth-banner.jpg')] bg-cover bg-center lg:block" />
     </div>
   )
 }
