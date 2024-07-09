@@ -20,7 +20,12 @@ import { Separator } from '../Separator'
 import { Menu } from './Menu'
 import { Profile } from './Profile'
 
+import { useAuth } from '../../hooks/auth'
+import { USER_ROLE } from '../../utils/roles'
+
 export function Sidebar() {
+  const { user } = useAuth()
+
   const [open, setOpen] = useState(false)
 
   return (
@@ -73,12 +78,14 @@ export function Sidebar() {
             <Nav.Name state={open} name="Pedidos" />
           </Nav.Root>
 
-          <Nav.Root to="/newdish">
-            <Nav.Prefix>
-              <PiPlus size={20} />
-            </Nav.Prefix>
-            <Nav.Name state={open} name="Novo Prato" />
-          </Nav.Root>
+          {user.role === USER_ROLE.ADMIN && (
+            <Nav.Root to="/newdish">
+              <Nav.Prefix>
+                <PiPlus size={20} />
+              </Nav.Prefix>
+              <Nav.Name state={open} name="Novo Prato" />
+            </Nav.Root>
+          )}
         </div>
 
         <div className="flex flex-col gap-1">
