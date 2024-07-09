@@ -33,6 +33,10 @@
     --ring: 0 0% 76%;
 
     --radius: 0.5rem;
+
+    --sb-track-color: hsl(0 0% 100%);
+    --sb-thumb-color: hsl(0 0% 80%);
+    --sb-size: 4px;
   }
   
   .dark {
@@ -63,6 +67,9 @@
     --border: 24 8% 12%;
     --input: 30 9% 18%;
     --ring: 28 100% 40%;
+
+    --sb-track-color: hsl(20 7% 8%);
+    --sb-thumb-color: hsl(30 8% 24%);
   }
 }
 
@@ -77,5 +84,26 @@
 
   body {
     @apply min-h-screen antialiased bg-background text-foreground;
+  }
+
+  *::-webkit-scrollbar {
+    width: var(--sb-size)
+  }
+
+  *::-webkit-scrollbar-track {
+    background: var(--sb-track-color);
+    border-radius: 9px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 9px;
+  }
+
+  @supports not selector(::-webkit-scrollbar) {
+    * {
+      scrollbar-color: var(--sb-thumb-color)
+                      var(--sb-track-color);
+    }
   }
 }
