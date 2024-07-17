@@ -54,6 +54,9 @@ export default {
         page: 'max-content 1fr',
         profile: 'max-content 1fr min-content',
       },
+      width: {
+        page: 'min(70rem, 100%)',
+      },
     },
   },
   plugins: [],
