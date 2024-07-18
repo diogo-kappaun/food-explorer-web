@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 
+import { DishUpdate } from '../pages/DishUpdate'
 import { Home } from '../pages/Home'
 import { NewDish } from '../pages/NewDish'
 import { Settings } from '../pages/Settings'
@@ -9,7 +10,8 @@ export function AdminRoutes() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/settings" element={<Settings />} />
-      <Route path="/newdish" element={<NewDish />} />
+      <Route path="/dish/new" element={<NewDish />} />
+      <Route path="/dish/update/:id" element={<DishUpdate />} />
     </Routes>
   )
 }
