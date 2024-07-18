@@ -71,12 +71,14 @@ export function Sidebar() {
             <Nav.Name state={open} name="Favoritos" />
           </Nav.Root>
 
-          <Nav.Root>
-            <Nav.Prefix>
-              <PiNewspaperClipping size={20} />
-            </Nav.Prefix>
-            <Nav.Name state={open} name="Pedidos" />
-          </Nav.Root>
+          {role === USER_ROLE.CUSTOMER && (
+            <Nav.Root>
+              <Nav.Prefix>
+                <PiNewspaperClipping size={20} />
+              </Nav.Prefix>
+              <Nav.Name state={open} name="Pedidos" />
+            </Nav.Root>
+          )}
 
           {role === USER_ROLE.ADMIN && (
             <Nav.Root to="/newdish">
