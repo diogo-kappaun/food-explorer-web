@@ -1,3 +1,4 @@
+import { jwtDecode } from 'jwt-decode'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import { api } from '../services/api'
@@ -20,7 +21,9 @@ export function AuthProvider({ children }) {
         localStorage.setItem('@foodexplorer:token', token)
         localStorage.setItem('@foodexplorer:user', JSON.stringify(user))
 
-        setData({ token, user })
+        const { role } = jwtDecode(token)
+
+        setData({ token, user, role })
       })
       .catch((error) => {
         if (error.response) {
@@ -44,7 +47,7 @@ export function AuthProvider({ children }) {
 
       localStorage.setItem('@foodexplorer:user', JSON.stringify(user))
 
-      setData({ user, token: data.token })
+      setData({ user, token: data.token, role: data.role })
     } catch (error) {
       if (error.response) {
         return toast.error(error.response.data.message)
@@ -67,16 +70,25 @@ export function AuthProvider({ children }) {
     if (token && user) {
       api.defaults.headers.common.Authorization = `Bearer ${token}`
 
+      const { role } = jwtDecode(token)
+
       setData({
         token,
         user: JSON.parse(user),
+        role,
       })
     }
   }, [])
 
   return (
     <AuthContext.Provider
-      value={{ signIn, signOut, updateAvatar, user: data.user }}
+      value={{
+        signIn,
+        signOut,
+        updateAvatar,
+        user: data.user,
+        role: data.role,
+      }}
     >
       {children}
     </AuthContext.Provider>

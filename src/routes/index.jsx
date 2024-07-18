@@ -9,10 +9,10 @@ import { AuthRoutes } from './auth.routes'
 import { CustomerRoutes } from './customer.routes'
 
 export function Routes() {
-  const { user } = useAuth()
+  const { user, role } = useAuth()
 
   function AcessRoutes() {
-    switch (user.role) {
+    switch (role) {
       case USER_ROLE.ADMIN:
         return <AdminRoutes />
       case USER_ROLE.CUSTOMER:
