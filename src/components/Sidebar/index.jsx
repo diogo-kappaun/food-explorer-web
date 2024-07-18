@@ -81,7 +81,7 @@ export function Sidebar() {
           )}
 
           {role === USER_ROLE.ADMIN && (
-            <Nav.Root to="/newdish">
+            <Nav.Root to="/dish/new">
               <Nav.Prefix>
                 <PiPlus size={20} />
               </Nav.Prefix>
