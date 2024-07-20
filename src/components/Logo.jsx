@@ -8,17 +8,11 @@ import LogoImage from '../assets/logo.svg'
 export function Logo({ className, props }) {
   const { role } = useAuth()
   return (
-    <div
-      className={twMerge(
-        'flex items-center gap-2 lg:absolute lg:left-[72px] lg:w-6',
-        className,
-      )}
-      {...props}
-    >
-      <img src={LogoImage} alt="logo" />
+    <div className={twMerge('flex items-center gap-2 lg:w-6', className)}>
+      <img src={LogoImage} alt="logo" {...props} />
 
       {role === USER_ROLE.ADMIN && (
-        <span className="text-base font-normal text-foreground">Admin</span>
+        <span className="font-bold text-foreground">ADMIN</span>
       )}
     </div>
   )
