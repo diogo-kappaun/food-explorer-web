@@ -7,9 +7,9 @@ import {
   PiStar,
   PiStarFill,
 } from 'react-icons/pi'
-import { useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../hooks/auth'
+import { formatPrice } from '../utils/formatPrice'
 import { USER_ROLE } from '../utils/roles'
 
 import { toast } from 'sonner'
@@ -22,8 +22,6 @@ export function Card({ data, onUpdate, onFavorite, onDetails }) {
   const [amount, setAmount] = useState(1)
   const [price, setPrice] = useState(data.price_in_cents)
   const [newPrice, setNewPrice] = useState('')
-
-  const navigate = useNavigate()
 
   function addAmount() {
     if (amount >= 20) {
@@ -45,20 +43,10 @@ export function Card({ data, onUpdate, onFavorite, onDetails }) {
     setPrice(data.price_in_cents * (amount - 1))
   }
 
-  function formatPrice(priceInCents) {
-    const pricePerHundred = priceInCents / 100
-
-    const decimalPrice = pricePerHundred.toFixed(2).toString().replace('.', ',')
-
-    const thousandPrice = decimalPrice.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-
-    const formattedPrice = `R$ ${thousandPrice}`
+  useEffect(() => {
+    const formattedPrice = formatPrice(price)
 
     setNewPrice(formattedPrice)
-  }
-
-  useEffect(() => {
-    formatPrice(price)
   }, [price])
 
   return (
