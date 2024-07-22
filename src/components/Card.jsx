@@ -81,7 +81,7 @@ export function Card({ data, onUpdate, onFavorite, onDetails }) {
 
       <p className="hidden text-center text-sm lg:block">{data.description}</p>
 
-      <span className="text-center text-sm lg:text-base">{newPrice}</span>
+      <span className="text-center text-sm lg:text-base">R$ {newPrice}</span>
 
       {role === USER_ROLE.CUSTOMER && (
         <div className="flex w-full flex-col gap-2 lg:flex-row">
