@@ -3,9 +3,7 @@ export function formatPrice(priceInCents) {
 
   const decimalPrice = pricePerHundred.toFixed(2).toString().replace('.', ',')
 
-  const thousandPrice = decimalPrice.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-
-  const formattedPrice = `R$ ${thousandPrice}`
+  const formattedPrice = decimalPrice.replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 
   return formattedPrice
 }
