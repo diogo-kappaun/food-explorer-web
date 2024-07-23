@@ -96,10 +96,11 @@ export function DishUpdate() {
     if (imageFile) {
       const fileUploadForm = new FormData()
       fileUploadForm.append('image', imageFile)
-
-      api
+      await api
         .patch(`/dishes/image?id=${id}`, fileUploadForm)
-        .then(() => {})
+        .then((response) => {
+          return response.data.image_id
+        })
         .catch((error) => {
           if (error.response) {
             toast.error(error.response.data.message)
@@ -138,11 +139,10 @@ export function DishUpdate() {
 
     const dishUpdate = Object.assign(data.dish, update)
 
-    api
+    await api
       .put(`/dishes?id=${id}`, dishUpdate)
       .then(() => {
-        toast.success('Prato atualizado com sucesso!')
-        navigate(-1)
+        return toast.success('Prato atualizado com sucesso!')
       })
       .catch((error) => {
         if (error.response) {
