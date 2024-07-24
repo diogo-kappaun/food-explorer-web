@@ -38,7 +38,11 @@ export const usePrevNextButtons = (emblaApi) => {
 
 export function PrevButton({ ...props }) {
   return (
-    <Button className="w-max disabled:opacity-70" type="button" {...props}>
+    <Button
+      className="h-max w-max p-2 disabled:opacity-70"
+      type="button"
+      {...props}
+    >
       <PiArrowLeft size={16} />
     </Button>
   )
@@ -46,7 +50,11 @@ export function PrevButton({ ...props }) {
 
 export function NextButton({ ...props }) {
   return (
-    <Button className="w-max disabled:opacity-70" type="button" {...props}>
+    <Button
+      className="h-max w-max p-2 disabled:opacity-70"
+      type="button"
+      {...props}
+    >
       <PiArrowRight size={16} />
     </Button>
   )

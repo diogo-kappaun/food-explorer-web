@@ -17,7 +17,7 @@ export function Slider({ children }) {
         <div className="-ml-4 flex">{children}</div>
       </div>
 
-      <div className="hidden items-center justify-center gap-2 lg:flex">
+      <div className="flex items-center gap-2">
         <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
         <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
       </div>
