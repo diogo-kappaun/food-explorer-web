@@ -1,53 +1,15 @@
-import { useEffect, useState } from 'react'
-import {
-  PiMinus,
-  PiPencil,
-  PiPlus,
-  PiShoppingCart,
-  PiStar,
-  PiStarFill,
-} from 'react-icons/pi'
+import { useState } from 'react'
+import { PiPencil, PiStar, PiStarFill } from 'react-icons/pi'
 
 import { useAuth } from '../hooks/auth'
-import { formatPrice } from '../utils/formatPrice'
 import { USER_ROLE } from '../utils/roles'
-
-import { toast } from 'sonner'
 
 import { Button } from './Button'
 
 export function Card({ data, onUpdate, onFavorite, onDetails }) {
   const { role } = useAuth()
 
-  const [amount, setAmount] = useState(1)
-  const [price, setPrice] = useState(data.price_in_cents)
   const [newPrice, setNewPrice] = useState('')
-
-  function addAmount() {
-    if (amount >= 20) {
-      return toast.error('Você atingiu a quantidade máxima permitida.', {
-        description: '👉🏻 A quantidade máxima permitida é de 20 pratos.',
-      })
-    }
-    setAmount(amount + 1)
-    setPrice(data.price_in_cents * (amount + 1))
-  }
-
-  function deductAmount() {
-    if (amount <= 1) {
-      return toast.error('Você atingiu a quantidade mínima permitida.', {
-        description: '👉🏻 A quantidade mínima permitida é de 1 prato.',
-      })
-    }
-    setAmount(amount - 1)
-    setPrice(data.price_in_cents * (amount - 1))
-  }
-
-  useEffect(() => {
-    const formattedPrice = formatPrice(price)
-
-    setNewPrice(formattedPrice)
-  }, [price])
 
   return (
     <div className="relative flex h-[300px] w-[200px] flex-col items-center justify-between rounded-md border bg-card p-6 lg:h-[400px] lg:min-w-[260px]">
@@ -79,32 +41,13 @@ export function Card({ data, onUpdate, onFavorite, onDetails }) {
         {data.name}
       </h3>
 
-      <p className="hidden text-center text-sm lg:block">{data.description}</p>
+      <p className="text-center text-xs text-muted-foreground lg:text-sm">
+        {data.description}
+      </p>
 
-      <span className="text-center text-sm lg:text-base">R$ {newPrice}</span>
-
-      {role === USER_ROLE.CUSTOMER && (
-        <div className="flex w-full flex-col gap-2 lg:flex-row">
-          <div className="flex items-center justify-center gap-3">
-            <Button
-              onClick={deductAmount}
-              className="px-3 py-2"
-              variant="ghost"
-            >
-              <PiMinus size={16} className="text-muted-foreground" />
-            </Button>
-            <span className="w-4 text-center text-sm lg:text-base">
-              {amount}
-            </span>
-            <Button onClick={addAmount} className="px-3 py-2" variant="ghost">
-              <PiPlus size={16} className="text-muted-foreground" />
-            </Button>
-          </div>
-          <Button className="flex justify-center">
-            <PiShoppingCart size={18} />
-          </Button>
-        </div>
-      )}
+      <span className="text-center text-sm lg:text-base">
+        {data.price_in_cents}
+      </span>
     </div>
   )
 }
