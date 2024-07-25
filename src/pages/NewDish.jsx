@@ -33,11 +33,10 @@ export function NewDish() {
   const regexPrice =
     /^\d{1,3}(?:\.\d{3})*(?:,\d{2})?$|^\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/
 
-  function convertPriceToCents(priceToConvert) {
+  function convertPriceToBack(priceToConvert) {
     priceToConvert = priceToConvert.replace(/\./g, '')
     priceToConvert = priceToConvert.replace(',', '.')
-    const cents = parseFloat(priceToConvert) * 100
-    return Math.round(cents)
+    return priceToConvert
   }
 
   function handleChangeImage(e) {
@@ -115,7 +114,7 @@ export function NewDish() {
       })
     }
 
-    const price_in_cents = convertPriceToCents(price)
+    const formattedPrice = convertPriceToBack(price)
 
     const fileUploadForm = new FormData()
     fileUploadForm.append('image', imageFile)
@@ -124,7 +123,7 @@ export function NewDish() {
       .post('/dishes', {
         name,
         description,
-        price: price_in_cents,
+        price: formattedPrice,
         category,
         ingredients,
       })
