@@ -5,7 +5,6 @@ import { toast } from 'sonner'
 
 import { useFetch } from '../hooks/useFetch'
 import { api } from '../services/api'
-import { formatPrice } from '../utils/formatPrice'
 
 import { BackButton } from '../components/BackButton'
 import { Button } from '../components/Button'
@@ -43,8 +42,7 @@ export function DishUpdate() {
   function convertPriceToCents(priceToConvert) {
     priceToConvert = priceToConvert.replace(/\./g, '')
     priceToConvert = priceToConvert.replace(',', '.')
-    const cents = parseFloat(priceToConvert) * 100
-    return Math.round(cents)
+    return priceToConvert
   }
 
   function handleChangeImage(e) {
@@ -127,17 +125,17 @@ export function DishUpdate() {
       })
     }
 
-    const price_in_cents = convertPriceToCents(price)
+    const formattedPrice = convertPriceToCents(price)
 
     const update = {
       name,
       description,
-      price_in_cents,
+      price: formattedPrice,
       category,
       ingredients,
     }
 
-    const dishUpdate = Object.assign(data.dish, update)
+    const dishUpdate = Object.assign(data, update)
 
     await api
       .put(`/dishes?id=${id}`, dishUpdate)
@@ -165,15 +163,13 @@ export function DishUpdate() {
       return
     }
 
-    const price = formatPrice(data.dish.price_in_cents)
-
     setImagePreview(
-      `https://res.cloudinary.com/diogofoodexplorer/image/upload/w_176/${data.dish.image_id}`,
+      `https://res.cloudinary.com/diogofoodexplorer/image/upload/c_fill,w_400,ar_1:1/${data.image_id}`,
     )
-    setName(data.dish.name)
-    setDescription(data.dish.description)
-    setPrice(price)
-    setCategory(data.dish.category)
+    setName(data.name)
+    setDescription(data.description)
+    setPrice(new Intl.NumberFormat('pt-br').format(data.price))
+    setCategory(data.category)
     setIngredients(data.ingredients)
   }, [data])
 
@@ -196,7 +192,7 @@ export function DishUpdate() {
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-xl font-medium">
-              Editar o {data.dish.name || 'prato'}
+              Editar o {data.name || 'prato'}
             </h2>
             <p className="text-sm text-muted-foreground">
               Edite ou exclua o prato aqui.
