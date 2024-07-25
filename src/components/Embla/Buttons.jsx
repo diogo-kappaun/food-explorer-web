@@ -41,6 +41,7 @@ export function PrevButton({ ...props }) {
     <Button
       className="h-max w-max p-2 disabled:opacity-70"
       type="button"
+      variant="secondary"
       {...props}
     >
       <PiArrowLeft size={16} />
@@ -51,8 +52,9 @@ export function PrevButton({ ...props }) {
 export function NextButton({ ...props }) {
   return (
     <Button
-      className="h-max w-max p-2 disabled:opacity-70"
+      className="h-max w-max p-2 disabled:opacity-60"
       type="button"
+      variant="secondary"
       {...props}
     >
       <PiArrowRight size={16} />
