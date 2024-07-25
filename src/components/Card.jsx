@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { PiPencil, PiStar, PiStarFill } from 'react-icons/pi'
 
 import { useAuth } from '../hooks/auth'
@@ -8,8 +7,6 @@ import { Button } from './Button'
 
 export function Card({ data, onUpdate, onFavorite, onDetails }) {
   const { role } = useAuth()
-
-  const [newPrice, setNewPrice] = useState('')
 
   return (
     <div className="relative flex h-[300px] w-[200px] flex-col items-center justify-between rounded-md border bg-card p-6 lg:h-[400px] lg:min-w-[260px]">
@@ -33,7 +30,7 @@ export function Card({ data, onUpdate, onFavorite, onDetails }) {
 
       <img
         className="h-[96px] w-[96px] rounded-full border shadow-sm lg:h-[146px] lg:w-[146px]"
-        src={`https://res.cloudinary.com/diogofoodexplorer/image/upload/w_176/${data.image_id}`}
+        src={`https://res.cloudinary.com/diogofoodexplorer/image/upload/c_fill,w_400,ar_1:1/${data.image_id}`}
         alt={`Imagem de ${data.name}`}
       />
 
@@ -41,12 +38,15 @@ export function Card({ data, onUpdate, onFavorite, onDetails }) {
         {data.name}
       </h3>
 
-      <p className="text-center text-xs text-muted-foreground lg:text-sm">
+      <p className="line-clamp-2 text-center text-xs text-muted-foreground lg:text-sm">
         {data.description}
       </p>
 
       <span className="text-center text-sm lg:text-base">
-        {data.price_in_cents}
+        {new Intl.NumberFormat('pt-BR', {
+          style: 'currency',
+          currency: 'BRL',
+        }).format(data.price)}
       </span>
     </div>
   )
