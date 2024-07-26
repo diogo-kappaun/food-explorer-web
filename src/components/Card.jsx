@@ -5,7 +5,7 @@ import { USER_ROLE } from '../utils/roles'
 
 import { Button } from './Button'
 
-export function Card({ data, onUpdate, onFavorite, onDetails }) {
+export function Card({ data, isFavorite, onUpdate, onFavorite }) {
   const { role } = useAuth()
 
   return (
@@ -18,13 +18,17 @@ export function Card({ data, onUpdate, onFavorite, onDetails }) {
         >
           <PiPencil size={20} className="text-primary" />
         </Button>
-      ) : data.isFavorite ? (
-        <Button className="absolute right-2 top-2" variant="ghost">
+      ) : isFavorite ? (
+        <Button
+          onClick={onFavorite}
+          className="absolute right-2 top-2"
+          variant="ghost"
+        >
           <PiStarFill size={20} className="text-primary" />
         </Button>
       ) : (
         <Button className="absolute right-2 top-2" variant="ghost">
-          <PiStar size={20} className="text-primary" />
+          <PiStar onClick={onFavorite} size={20} className="text-primary" />
         </Button>
       )}
 
