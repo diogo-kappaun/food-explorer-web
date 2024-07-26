@@ -1,6 +1,7 @@
 import { BrowserRouter } from 'react-router-dom'
 
 import { useAuth } from '../hooks/auth'
+import { FavoriteProvider } from '../hooks/favorites'
 
 import { USER_ROLE } from '../utils/roles'
 
@@ -23,6 +24,14 @@ export function Routes() {
   }
 
   return (
-    <BrowserRouter>{user ? <AcessRoutes /> : <AuthRoutes />}</BrowserRouter>
+    <BrowserRouter>
+      {user ? (
+        <FavoriteProvider>
+          <AcessRoutes />
+        </FavoriteProvider>
+      ) : (
+        <AuthRoutes />
+      )}
+    </BrowserRouter>
   )
 }
