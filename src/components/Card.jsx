@@ -9,7 +9,7 @@ export function Card({ data, isFavorite, onUpdate, onFavorite }) {
   const { role } = useAuth()
 
   return (
-    <div className="relative flex h-[300px] w-[200px] flex-col items-center justify-between rounded-md border bg-card p-6 lg:h-[400px] lg:min-w-[260px]">
+    <div className="relative flex h-[300px] w-[200px] flex-col items-center justify-between rounded-md border bg-card p-6 shadow-sm lg:h-[400px] lg:min-w-[260px]">
       {role === USER_ROLE.ADMIN ? (
         <Button
           onClick={onUpdate}
