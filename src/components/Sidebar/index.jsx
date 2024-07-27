@@ -64,12 +64,14 @@ export function Sidebar() {
             <Nav.Name state={open} name="Início" />
           </Nav.Root>
 
-          <Nav.Root>
-            <Nav.Prefix>
-              <PiStar size={20} />
-            </Nav.Prefix>
-            <Nav.Name state={open} name="Favoritos" />
-          </Nav.Root>
+          {role === USER_ROLE.CUSTOMER && (
+            <Nav.Root to="/favorites">
+              <Nav.Prefix>
+                <PiStar size={20} />
+              </Nav.Prefix>
+              <Nav.Name state={open} name="Favoritos" />
+            </Nav.Root>
+          )}
 
           {role === USER_ROLE.CUSTOMER && (
             <Nav.Root>
