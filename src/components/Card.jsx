@@ -10,27 +10,21 @@ export function Card({ data, isFavorite, onUpdate, onFavorite }) {
 
   return (
     <div className="relative flex h-[300px] w-[200px] flex-col items-center justify-between rounded-md border bg-card p-6 shadow-sm lg:h-[400px] lg:min-w-[260px]">
-      {role === USER_ROLE.ADMIN ? (
-        <Button
-          onClick={onUpdate}
-          className="absolute right-2 top-2"
-          variant="ghost"
-        >
-          <PiPencil size={20} className="text-primary" />
-        </Button>
-      ) : isFavorite ? (
-        <Button
-          onClick={onFavorite}
-          className="absolute right-2 top-2"
-          variant="ghost"
-        >
-          <PiStarFill size={20} className="text-primary" />
-        </Button>
-      ) : (
-        <Button className="absolute right-2 top-2" variant="ghost">
-          <PiStar onClick={onFavorite} size={20} className="text-primary" />
-        </Button>
-      )}
+      <div className="absolute right-2 top-2 z-10 text-primary">
+        {role === USER_ROLE.ADMIN ? (
+          <Button onClick={onUpdate} variant="ghost">
+            <PiPencil size={20} />
+          </Button>
+        ) : isFavorite ? (
+          <Button onClick={onFavorite} variant="ghost">
+            <PiStarFill size={20} />
+          </Button>
+        ) : (
+          <Button variant="ghost">
+            <PiStar onClick={onFavorite} size={20} />
+          </Button>
+        )}
+      </div>
 
       <img
         className="h-[96px] w-[96px] rounded-full border shadow-sm lg:h-[146px] lg:w-[146px]"
