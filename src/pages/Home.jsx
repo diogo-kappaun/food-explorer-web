@@ -44,8 +44,8 @@ export function Home() {
 
   return (
     <Container>
-      <Header />
-      <Sidebar />
+      <Header inputOn />
+      <Sidebar inputOn />
 
       <Section>
         <div className="relative flex h-[100px] items-center justify-center rounded-md bg-[url('/src/assets/banner.jpg')] bg-cover bg-center shadow-sm lg:h-[132px]">

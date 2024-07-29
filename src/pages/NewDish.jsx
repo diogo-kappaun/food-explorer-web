@@ -159,7 +159,7 @@ export function NewDish() {
 
   return (
     <Container>
-      <Header noInput />
+      <Header />
       <Sidebar />
 
       <Section>

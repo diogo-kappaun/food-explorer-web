@@ -179,7 +179,7 @@ export function DishUpdate() {
 
   return (
     <Container>
-      <Header noInput />
+      <Header />
       <Sidebar />
 
       <Section>

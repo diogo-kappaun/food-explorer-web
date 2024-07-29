@@ -23,8 +23,8 @@ import { Profile } from './Profile'
 import { useAuth } from '../../hooks/auth'
 import { USER_ROLE } from '../../utils/roles'
 
-export function Sidebar() {
-  const { user, role } = useAuth()
+export function Sidebar({ inputOn = false }) {
+  const { role } = useAuth()
 
   const [open, setOpen] = useState(false)
 
@@ -48,7 +48,7 @@ export function Sidebar() {
         className="mt-6 flex flex-1 flex-col data-[state=closed]:hidden lg:mt-2 lg:data-[state=closed]:flex"
       >
         <div className="flex h-full flex-col gap-1">
-          <Form.Root className="mb-4 lg:hidden">
+          <Form.Root className={`mb-4 lg:hidden ${inputOn ? '' : 'hidden'}`}>
             <Input.Root>
               <Input.Prefix>
                 <PiMagnifyingGlass size={20} />
