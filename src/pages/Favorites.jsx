@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom'
+
 import { BackButton } from '../components/BackButton'
 import { Container } from '../components/Container'
 import { FavoriteCard } from '../components/FavoriteCard'
@@ -11,8 +13,14 @@ import { useFavorites } from '../hooks/favorites'
 export function Favorites() {
   const { favorites, toggle } = useFavorites()
 
+  const navigate = useNavigate()
+
   async function handleFavorite(id) {
     await toggle({ dishId: id })
+  }
+
+  function handleDetails(id) {
+    navigate(`/dish/details/${id}`)
   }
 
   return (
@@ -32,6 +40,7 @@ export function Favorites() {
               <FavoriteCard
                 key={favorite.id}
                 onFavorite={() => handleFavorite(favorite.id)}
+                onDetails={() => handleDetails(favorite.id)}
                 data={favorite}
               />
             ))

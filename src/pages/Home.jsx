@@ -26,6 +26,10 @@ export function Home() {
     navigate(`/dish/update/${id}`)
   }
 
+  function handleDetails(id) {
+    navigate(`/dish/details/${id}`)
+  }
+
   async function handleFavorite(id) {
     await toggle({ dishId: id })
   }
@@ -60,6 +64,7 @@ export function Home() {
                     data={dish}
                     isFavorite={favoriteList.find((fav) => fav.id === dish.id)}
                     onFavorite={() => handleFavorite(dish.id)}
+                    onDetails={() => handleDetails(dish.id)}
                     onUpdate={() => handleUpdate(dish.id)}
                   />
                 </div>
