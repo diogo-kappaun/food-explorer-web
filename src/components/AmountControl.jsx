@@ -4,7 +4,7 @@ import { Button } from './Button'
 
 export function AmountControl({ amount, onIncrease, onDescrease }) {
   return (
-    <div className="flex w-full flex-col gap-2 lg:flex-row">
+    <div className="fixed bottom-0 left-0 right-0 flex w-full flex-row justify-center gap-2 border-y p-3 lg:relative lg:justify-start lg:border-none lg:p-0">
       <div className="flex items-center justify-center gap-3">
         <Button onClick={onDescrease} className="px-3 py-2" variant="ghost">
           <PiMinus size={16} className="text-muted-foreground" />
@@ -14,8 +14,8 @@ export function AmountControl({ amount, onIncrease, onDescrease }) {
           <PiPlus size={16} className="text-muted-foreground" />
         </Button>
       </div>
-      <Button className="flex justify-center">
-        <PiShoppingCart size={18} />
+      <Button className="flex w-max justify-center">
+        <PiShoppingCart size={20} />
       </Button>
     </div>
   )
