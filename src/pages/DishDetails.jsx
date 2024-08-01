@@ -3,6 +3,8 @@ import { PiStar, PiStarFill } from 'react-icons/pi'
 import { useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
+import { USER_ROLE } from '../utils/roles'
+
 import { useFavorites } from '../hooks/favorites'
 import { useFetch } from '../hooks/useFetch'
 
@@ -13,11 +15,13 @@ import { Container } from '../components/Container'
 import { Header } from '../components/Header'
 import { Section } from '../components/Section'
 import { Sidebar } from '../components/Sidebar'
+import { useAuth } from '../hooks/auth'
 
 export function DishDetails() {
   const { favorites, toggle } = useFavorites()
   const { id } = useParams()
   const { data } = useFetch(`dishes/${id}`)
+  const { role } = useAuth()
 
   const [amount, setAmount] = useState(1)
 
@@ -62,13 +66,15 @@ export function DishDetails() {
         <div className="flex justify-between">
           <BackButton />
 
-          <Button onClick={() => handleFavorite(data.id)} variant="ghost">
-            {favoriteList.find((fav) => fav.id === data.id) ? (
-              <PiStarFill size={20} className="text-primary" />
-            ) : (
-              <PiStar size={20} className="text-primary" />
-            )}
-          </Button>
+          {role === USER_ROLE.CUSTOMER && (
+            <Button onClick={() => handleFavorite(data.id)} variant="ghost">
+              {favoriteList.find((fav) => fav.id === data.id) ? (
+                <PiStarFill size={20} className="text-primary" />
+              ) : (
+                <PiStar size={20} className="text-primary" />
+              )}
+            </Button>
+          )}
         </div>
 
         <div className="mx-auto flex h-[calc(100%-62px)] max-w-[400px] flex-col items-center justify-center gap-6 pb-6 text-sm lg:max-w-max lg:flex-row lg:text-base">
