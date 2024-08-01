@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { PiStar, PiStarFill } from 'react-icons/pi'
-import { useParams } from 'react-router-dom'
+import { PiPencil, PiShoppingCart, PiStar, PiStarFill } from 'react-icons/pi'
+import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'sonner'
 
 import { USER_ROLE } from '../utils/roles'
 
+import { useAuth } from '../hooks/auth'
 import { useFavorites } from '../hooks/favorites'
 import { useFetch } from '../hooks/useFetch'
 
@@ -15,7 +16,6 @@ import { Container } from '../components/Container'
 import { Header } from '../components/Header'
 import { Section } from '../components/Section'
 import { Sidebar } from '../components/Sidebar'
-import { useAuth } from '../hooks/auth'
 
 export function DishDetails() {
   const { favorites, toggle } = useFavorites()
@@ -27,12 +27,18 @@ export function DishDetails() {
 
   const [favoriteList, setFavoriteList] = useState([])
 
+  const navigate = useNavigate()
+
   useEffect(() => {
     setFavoriteList(favorites)
   }, [favorites])
 
   if (!data) {
     return
+  }
+
+  function handleUpdate() {
+    navigate(`/dish/update/${id}`)
   }
 
   async function handleFavorite(id) {
@@ -104,12 +110,27 @@ export function DishDetails() {
                 currency: 'BRL',
               }).format(data.price * amount)}
             </span>
-
-            <AmountControl
-              amount={amount}
-              onIncrease={increaseAmount}
-              onDescrease={decreaseAmount}
-            />
+            <div className="fixed bottom-0 left-0 right-0 flex flex-row justify-center gap-6 border-y bg-background p-3 lg:relative lg:justify-start lg:border-none lg:p-0">
+              {role === USER_ROLE.CUSTOMER && (
+                <AmountControl
+                  amount={amount}
+                  onIncrease={increaseAmount}
+                  onDescrease={decreaseAmount}
+                />
+              )}
+              {role === USER_ROLE.CUSTOMER ? (
+                <Button className="flex w-max justify-center">
+                  <PiShoppingCart size={20} />
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleUpdate}
+                  className="flex w-max justify-center"
+                >
+                  <PiPencil size={20} />
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </Section>
