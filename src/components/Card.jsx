@@ -27,7 +27,7 @@ export function Card({ data, isFavorite, onUpdate, onFavorite, onDetails }) {
       </div>
 
       <div
-        className="flex h-[300px] w-[200px] flex-col items-center justify-between rounded-md border bg-card p-6 shadow-sm lg:h-[400px] lg:min-w-[260px]"
+        className="flex h-[300px] w-[200px] cursor-pointer flex-col items-center justify-between rounded-md border bg-card p-6 shadow-sm lg:h-[400px] lg:min-w-[260px]"
         onClick={onDetails}
       >
         <img
