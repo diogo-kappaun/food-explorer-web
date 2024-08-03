@@ -1,42 +1,49 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { useFavorites } from '../hooks/favorites'
 import { useFetch } from '../hooks/useFetch'
 
-import { Card } from '../components/Card'
 import { Container } from '../components/Container'
-import { Slider } from '../components/Embla/Slider'
+import { DishCategory } from '../components/DishCategory'
 import { Header } from '../components/Header'
 import { Section } from '../components/Section'
 import { Separator } from '../components/Separator'
 import { Sidebar } from '../components/Sidebar'
 
-import * as Dish from '../components/Dish'
-
 export function Home() {
   const { data } = useFetch('dishes')
-  const { favorites, toggle } = useFavorites()
+  const { favorites } = useFavorites()
 
   const [favoriteList, setFavoriteList] = useState([])
 
-  const navigate = useNavigate()
+  const [combos, setCombos] = useState([])
+  const [burgers, setBurgers] = useState([])
+  const [desserts, setDesserts] = useState([])
+  const [drinks, setDrinks] = useState([])
 
-  function handleUpdate(id) {
-    navigate(`/dish/update/${id}`)
-  }
+  function filterDishCategory(dishes) {
+    const combos = dishes.filter((dish) => dish.category === 'combo')
+    const burgers = dishes.filter((dish) => dish.category === 'burger')
+    const desserts = dishes.filter((dish) => dish.category === 'dessert')
+    const drinks = dishes.filter((dish) => dish.category === 'drink')
 
-  function handleDetails(id) {
-    navigate(`/dish/details/${id}`)
-  }
-
-  async function handleFavorite(id) {
-    await toggle({ dishId: id })
+    setCombos(combos)
+    setBurgers(burgers)
+    setDesserts(desserts)
+    setDrinks(drinks)
   }
 
   useEffect(() => {
     setFavoriteList(favorites)
   }, [favorites])
+
+  useEffect(() => {
+    if (!data) {
+      return
+    }
+
+    filterDishCategory(data)
+  }, [data])
 
   if (!data) {
     return <p>Carregando!</p>
@@ -54,24 +61,37 @@ export function Home() {
 
         <Separator />
 
-        <Dish.Root>
-          <Dish.Title>Refeições</Dish.Title>
-          <Slider>
-            {data.map((dish) => {
-              return (
-                <div key={dish.id} className="pl-4">
-                  <Card
-                    data={dish}
-                    isFavorite={favoriteList.find((fav) => fav.id === dish.id)}
-                    onFavorite={() => handleFavorite(dish.id)}
-                    onDetails={() => handleDetails(dish.id)}
-                    onUpdate={() => handleUpdate(dish.id)}
-                  />
-                </div>
-              )
-            })}
-          </Slider>
-        </Dish.Root>
+        {combos.length > 0 && (
+          <DishCategory
+            title="Combos"
+            favorites={favoriteList}
+            category={combos}
+          />
+        )}
+
+        {burgers.length > 0 && (
+          <DishCategory
+            title="Burgers"
+            favorites={favoriteList}
+            category={burgers}
+          />
+        )}
+
+        {desserts.length > 0 && (
+          <DishCategory
+            title="Sobremesa"
+            favorites={favoriteList}
+            category={desserts}
+          />
+        )}
+
+        {drinks.length > 0 && (
+          <DishCategory
+            title="Bebidas"
+            favorites={favoriteList}
+            category={drinks}
+          />
+        )}
       </Section>
     </Container>
   )
