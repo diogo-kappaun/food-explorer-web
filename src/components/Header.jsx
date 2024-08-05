@@ -5,7 +5,7 @@ import * as Input from './Input'
 
 import { Logo } from './Logo'
 
-export function Header({ inputOn = false }) {
+export function Header({ inputOn = false, setSearch, value }) {
   return (
     <div className="relative col-span-2 hidden h-16 w-full items-center border-y lg:flex">
       <Logo className="lg:absolute lg:left-[72px]" />
@@ -20,6 +20,8 @@ export function Header({ inputOn = false }) {
           <Input.Control
             type="text"
             placeholder="Busque por pratos e ingredientes"
+            onChange={(e) => setSearch(e.target.value)}
+            value={value}
           />
         </Input.Root>
       </Form.Root>

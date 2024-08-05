@@ -23,7 +23,7 @@ import { Profile } from './Profile'
 import { useAuth } from '../../hooks/auth'
 import { USER_ROLE } from '../../utils/roles'
 
-export function Sidebar({ inputOn = false }) {
+export function Sidebar({ inputOn = false, setSearch, value }) {
   const { role } = useAuth()
 
   const [open, setOpen] = useState(false)
@@ -53,7 +53,12 @@ export function Sidebar({ inputOn = false }) {
               <Input.Prefix>
                 <PiMagnifyingGlass size={20} />
               </Input.Prefix>
-              <Input.Control type="text" placeholder="Busque por pratos" />
+              <Input.Control
+                type="text"
+                placeholder="Busque por pratos"
+                onChange={(e) => setSearch(e.target.value)}
+                value={value}
+              />
             </Input.Root>
           </Form.Root>
 
