@@ -11,39 +11,45 @@ import { Separator } from '../components/Separator'
 import { Sidebar } from '../components/Sidebar'
 
 export function Home() {
-  const { data } = useFetch('dishes')
+  const [search, setSearch] = useState('')
+  const { data } = useFetch(`dishes`)
   const { favorites } = useFavorites()
 
   const [favoriteList, setFavoriteList] = useState([])
 
-  const [combos, setCombos] = useState([])
-  const [burgers, setBurgers] = useState([])
-  const [desserts, setDesserts] = useState([])
-  const [drinks, setDrinks] = useState([])
+  const [dishes, setDishes] = useState([])
 
   function filterDishCategory(dishes) {
-    const combos = dishes.filter((dish) => dish.category === 'combo')
-    const burgers = dishes.filter((dish) => dish.category === 'burger')
-    const desserts = dishes.filter((dish) => dish.category === 'dessert')
-    const drinks = dishes.filter((dish) => dish.category === 'drink')
-
-    setCombos(combos)
-    setBurgers(burgers)
-    setDesserts(desserts)
-    setDrinks(drinks)
+    return dishes.reduce(
+      (acc, item) => {
+        const category = item.category
+        if (!acc[category]) {
+          acc[category] = {
+            category,
+            items: [],
+          }
+        }
+        acc[category].items.push(item)
+        return acc
+      },
+      {
+        combo: {
+          category: 'combo',
+          items: [],
+        },
+      },
+    )
   }
 
   useEffect(() => {
-    setFavoriteList(favorites)
-  }, [favorites])
-
-  useEffect(() => {
-    if (!data) {
+    if (!data || !favorites) {
       return
     }
 
-    filterDishCategory(data)
-  }, [data])
+    const filteredDishCategories = filterDishCategory(data)
+    setDishes(filteredDishCategories)
+    setFavoriteList(favorites)
+  }, [data, favorites])
 
   if (!data) {
     return <p>Carregando!</p>
@@ -51,8 +57,8 @@ export function Home() {
 
   return (
     <Container>
-      <Header inputOn />
-      <Sidebar inputOn />
+      <Header inputOn setSearch={setSearch} value={search} />
+      <Sidebar inputOn setSearch={setSearch} value={search} />
 
       <Section>
         <div className="relative flex h-[100px] items-center justify-center rounded-md bg-[url('/src/assets/banner.jpg')] bg-cover bg-center shadow-sm lg:h-[132px]">
@@ -61,37 +67,16 @@ export function Home() {
 
         <Separator />
 
-        {combos.length > 0 && (
-          <DishCategory
-            title="Combos"
-            favorites={favoriteList}
-            category={combos}
-          />
-        )}
-
-        {burgers.length > 0 && (
-          <DishCategory
-            title="Burgers"
-            favorites={favoriteList}
-            category={burgers}
-          />
-        )}
-
-        {desserts.length > 0 && (
-          <DishCategory
-            title="Sobremesa"
-            favorites={favoriteList}
-            category={desserts}
-          />
-        )}
-
-        {drinks.length > 0 && (
-          <DishCategory
-            title="Bebidas"
-            favorites={favoriteList}
-            category={drinks}
-          />
-        )}
+        {dishes &&
+          Object.values(dishes).map((categories) => {
+            return (
+              <DishCategory
+                key={categories.category}
+                favorites={favoriteList}
+                categories={categories}
+              />
+            )
+          })}
       </Section>
     </Container>
   )
