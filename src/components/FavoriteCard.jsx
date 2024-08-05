@@ -14,7 +14,7 @@ export function FavoriteCard({ data, onFavorite, onDetails }) {
       </Button>
 
       <div
-        className="flex w-full items-center gap-3 rounded-md border bg-card p-4 shadow-sm"
+        className="flex w-full cursor-pointer items-center gap-3 rounded-md border bg-card p-4 shadow-sm"
         onClick={onDetails}
       >
         <img
