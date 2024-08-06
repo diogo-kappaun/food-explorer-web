@@ -8,9 +8,10 @@ export function FavoriteProvider({ children }) {
   const [favorites, setFavorites] = useState([])
 
   async function getFavorites() {
-    const { data } = await api.get('/favorites')
-
-    setFavorites(data.favorites)
+    try {
+      const { data } = await api.get('/favorites')
+      setFavorites(data.favorites)
+    } catch (error) {}
   }
 
   async function toggle({ dishId }) {

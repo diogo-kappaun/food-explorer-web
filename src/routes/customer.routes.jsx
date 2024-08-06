@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import { useAuth } from '../hooks/auth'
@@ -10,7 +11,9 @@ import { Settings } from '../pages/Settings'
 export function CustomerRoutes() {
   const { validateToken } = useAuth()
 
-  validateToken()
+  useEffect(() => {
+    validateToken()
+  }, [validateToken])
 
   return (
     <Routes>
