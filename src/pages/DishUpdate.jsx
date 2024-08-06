@@ -262,10 +262,10 @@ export function DishUpdate() {
                 value={category || ''}
                 onValueChange={(e) => setCategory(e)}
               >
-                <SelectItem value="combo" text="Combo" />
-                <SelectItem value="burger" text="Hambúrguer" />
-                <SelectItem value="dessert" text="Sobremesa" />
-                <SelectItem value="drink" text="Bebida" />
+                <SelectItem value="combos" text="Combo" />
+                <SelectItem value="burgers" text="Burger" />
+                <SelectItem value="sobremesas" text="Sobremesa" />
+                <SelectItem value="bebidas" text="Bebida" />
               </Select>
             </Form.Field>
 

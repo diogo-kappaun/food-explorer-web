@@ -6,15 +6,15 @@ import { Slider } from '../components/Embla/Slider'
 
 import * as Dish from '../components/Dish'
 
-export function DishCategory({ favorites, categories, title }) {
+export function DishCategory({ favorites, categories }) {
   const { toggle } = useFavorites()
   const navigate = useNavigate()
 
   const categoriesNames = {
     combos: 'Combos',
     burgers: 'Burgers',
-    desserts: 'Sobremesas',
-    drinks: 'Bebidas',
+    sobremesas: 'Sobremesas',
+    bebidas: 'Bebidas',
   }
 
   function handleUpdate(id) {
@@ -28,18 +28,10 @@ export function DishCategory({ favorites, categories, title }) {
   async function handleFavorite(id) {
     await toggle({ dishId: id })
   }
-
+  console.log(categoriesNames[categories.category])
   return (
     <Dish.Root>
-      <Dish.Title>
-        {categories.category === 'combo'
-          ? 'Combos'
-          : categories.category === 'burger'
-            ? 'Burgers'
-            : categories.category === 'dessert'
-              ? 'Sobremesas'
-              : 'Bebidas'}
-      </Dish.Title>
+      <Dish.Title>{categoriesNames[categories.category]}</Dish.Title>
       <Slider>
         {categories.items.map((dish) => {
           return (
