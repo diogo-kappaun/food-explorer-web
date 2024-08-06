@@ -28,7 +28,7 @@ export function DishCategory({ favorites, categories }) {
   async function handleFavorite(id) {
     await toggle({ dishId: id })
   }
-  console.log(categoriesNames[categories.category])
+
   return (
     <Dish.Root>
       <Dish.Title>{categoriesNames[categories.category]}</Dish.Title>
