@@ -59,8 +59,17 @@ export function AuthProvider({ children }) {
 
   function signOut() {
     localStorage.removeItem('@foodexplorer:user')
+    localStorage.removeItem('@foodexplorer:token')
 
     setData({})
+  }
+
+  function validateToken() {
+    const decodedToken = jwtDecode(data.token)
+    const currentTime = Date.now() / 1000
+    if (decodedToken.exp < currentTime) {
+      signOut()
+    }
   }
 
   useEffect(() => {
@@ -86,6 +95,7 @@ export function AuthProvider({ children }) {
         signIn,
         signOut,
         updateAvatar,
+        validateToken,
         user: data.user,
         role: data.role,
       }}

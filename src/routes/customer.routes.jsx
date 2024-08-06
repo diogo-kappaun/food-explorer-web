@@ -1,11 +1,17 @@
 import { Route, Routes } from 'react-router-dom'
 
+import { useAuth } from '../hooks/auth'
+
 import { DishDetails } from '../pages/DishDetails'
 import { Favorites } from '../pages/Favorites'
 import { Home } from '../pages/Home'
 import { Settings } from '../pages/Settings'
 
 export function CustomerRoutes() {
+  const { validateToken } = useAuth()
+
+  validateToken()
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
