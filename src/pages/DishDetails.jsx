@@ -70,34 +70,37 @@ export function DishDetails() {
       <Sidebar />
 
       <Section>
-        <div className="flex justify-between">
-          <BackButton />
+        <BackButton />
 
+        <div className="relative mx-auto flex h-[calc(100%-82px)] flex-col items-center justify-center gap-6 rounded-lg border p-6 pb-6 text-sm lg:flex-row lg:text-base">
           {role === USER_ROLE.CUSTOMER && (
-            <Button onClick={() => handleFavorite(data.id)} variant="ghost">
+            <Button
+              className="absolute right-6 top-6 z-10 text-primary"
+              onClick={() => handleFavorite(data.id)}
+              variant="ghost"
+            >
               {favoriteList.find((fav) => fav.id === data.id) ? (
-                <PiStarFill size={20} className="text-primary" />
+                <PiStarFill size={20} />
               ) : (
-                <PiStar size={20} className="text-primary" />
+                <PiStar size={20} />
               )}
             </Button>
           )}
-        </div>
+          <div className="flex justify-start">
+            <img
+              className="h-[148px] rounded-full border shadow-sm lg:h-max"
+              src={`https://res.cloudinary.com/diogofoodexplorer/image/upload/c_fill,w_400,ar_1:1/${data.image_id}`}
+              alt={`Imagem de ${data.name}`}
+            />
+          </div>
 
-        <div className="mx-auto flex h-[calc(100%-62px)] max-w-[400px] flex-col items-center justify-center gap-6 pb-6 text-sm lg:max-w-max lg:flex-row lg:text-base">
-          <img
-            className="h-[148px] w-[148px] rounded-full border shadow-sm lg:h-[240px] lg:w-[240px]"
-            src={`https://res.cloudinary.com/diogofoodexplorer/image/upload/c_fill,w_400,ar_1:1/${data.image_id}`}
-            alt={`Imagem de ${data.name}`}
-          />
-
-          <div className="flex flex-col items-center space-y-6 text-center lg:items-start lg:text-start">
+          <div className="flex w-full flex-col items-center space-y-6 text-center lg:items-start lg:text-start">
             <h2 className="text-xl font-bold lg:text-2xl">{data.name}</h2>
-            <p className="max-w-[400px] text-center lg:text-start">
+            <p className="max-w-[400px] text-center indent-8 lg:max-w-full lg:text-justify">
               {data.description}
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-3 text-sm lg:justify-start">
+            <div className="flex flex-wrap items-center justify-center gap-3 rounded-lg border p-3 text-sm lg:justify-start">
               {data.ingredients.map((ingredient, index) => (
                 <span key={index} className="rounded-md border px-2 py-1">
                   {ingredient}
