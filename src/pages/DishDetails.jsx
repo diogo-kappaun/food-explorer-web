@@ -14,6 +14,7 @@ import { BackButton } from '../components/BackButton'
 import { Button } from '../components/Button'
 import { Container } from '../components/Container'
 import { Header } from '../components/Header'
+import { Loading } from '../components/Loading'
 import { Section } from '../components/Section'
 import { Sidebar } from '../components/Sidebar'
 
@@ -34,7 +35,7 @@ export function DishDetails() {
   }, [favorites])
 
   if (!data) {
-    return
+    return <Loading />
   }
 
   function handleUpdate() {

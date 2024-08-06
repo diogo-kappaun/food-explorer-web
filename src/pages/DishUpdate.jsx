@@ -20,6 +20,7 @@ import { Title } from '../components/Title'
 
 import * as Form from '../components/Form'
 import * as Input from '../components/Input'
+import { Loading } from '../components/Loading'
 
 export function DishUpdate() {
   const { id } = useParams()
@@ -174,7 +175,7 @@ export function DishUpdate() {
   }, [data])
 
   if (!data) {
-    return
+    return <Loading />
   }
 
   return (

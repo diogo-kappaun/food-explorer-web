@@ -7,6 +7,7 @@ import { useFetch } from '../hooks/useFetch'
 import { Container } from '../components/Container'
 import { DishCategory } from '../components/DishCategory'
 import { Header } from '../components/Header'
+import { Loading } from '../components/Loading'
 import { Section } from '../components/Section'
 import { Separator } from '../components/Separator'
 import { Sidebar } from '../components/Sidebar'
@@ -90,7 +91,7 @@ export function Home() {
   }, [data, favorites, debouncedSearch])
 
   if (!data) {
-    return <p>Carregando!</p>
+    return <Loading />
   }
 
   return (
