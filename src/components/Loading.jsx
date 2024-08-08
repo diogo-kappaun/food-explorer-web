@@ -6,7 +6,7 @@ export function Loading({ isLoading = false }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-glass shadow-glass absolute bottom-0 left-0 right-0 top-0 z-50 flex flex-col items-center justify-center backdrop-blur-sm"
+      className="absolute bottom-0 left-0 right-0 top-0 z-50 flex flex-col items-center justify-center bg-glass shadow-glass backdrop-blur-sm"
     >
       <motion.svg
         width="88"
