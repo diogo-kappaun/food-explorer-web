@@ -12,7 +12,7 @@ export function Avatar() {
   const { updateAvatar, user } = useAuth()
 
   const [avatarFile, setAvatarFile] = useState(null)
-  const [isUpdating, setIsUpdating] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const avatarUrl = user.avatar_id
     ? `https://res.cloudinary.com/diogofoodexplorer/image/upload/${user.avatar_id}`
@@ -33,14 +33,14 @@ export function Avatar() {
   }
 
   async function handleSaveAvatar() {
-    setIsUpdating(true)
+    setIsLoading(true)
 
     try {
       await updateAvatar({ avatarFile })
     } finally {
       toast.success('Imagem de perfil alterada com sucesso!')
       setAvatarFile(null)
-      setIsUpdating(false)
+      setIsLoading(false)
     }
   }
 
@@ -56,7 +56,7 @@ export function Avatar() {
 
         <div className="flex gap-3">
           <Button
-            disabled={avatarFile ? isUpdating : true}
+            disabled={avatarFile ? isLoading : true}
             form="update"
             type="button"
             onClick={handleSaveAvatar}

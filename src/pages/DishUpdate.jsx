@@ -148,10 +148,20 @@ export function DishUpdate() {
   }
 
   async function handleDelete() {
-    await api.delete(`/dishes?id=${id}`).then(() => {
+    setIsLoading(true)
+    try {
+      await api.delete(`/dishes?id=${id}`)
       navigate('/')
       return toast.success('Prato excluído com sucesso!')
-    })
+    } catch (error) {
+      if (error.response) {
+        toast.error(error.response.data.message)
+      } else {
+        toast.error('Não foi possível deletar o prato!')
+      }
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   useEffect(() => {
