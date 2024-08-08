@@ -83,14 +83,14 @@ export function DishDetails() {
                   )}
                 </Button>
               )}
-              <div className="flex justify-start">
+              <div className="flex justify-start lg:w-[290px]">
                 <img
-                  className="h-[148px] rounded-full border shadow-sm lg:h-max"
+                  className="h-[148px] w-[148px] rounded-full border shadow-sm lg:h-[290px] lg:w-[290px]"
                   src={`https://res.cloudinary.com/diogofoodexplorer/image/upload/c_fill,w_400,ar_1:1/${data.image_id}`}
                   alt={`Imagem de ${data.name}`}
                 />
               </div>
-              <div className="flex w-full flex-col items-center space-y-6 text-center lg:items-start lg:text-start">
+              <div className="flex flex-1 flex-col items-center space-y-6 text-center lg:items-start lg:text-start">
                 <h2 className="text-xl font-bold lg:text-2xl">{data.name}</h2>
                 <p className="max-w-[400px] text-center indent-8 lg:max-w-full lg:text-justify">
                   {data.description}
