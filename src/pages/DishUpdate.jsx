@@ -140,7 +140,7 @@ export function DishUpdate() {
       if (error.response) {
         toast.error(error.response.data.message)
       } else {
-        toast.error('Não foi possível adicionar o prato!')
+        toast.error('Não foi possível editar o prato!')
       }
     } finally {
       setIsLoading(false)
