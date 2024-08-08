@@ -40,7 +40,7 @@ export function DishUpdate() {
   const [isLoading, setIsLoading] = useState(false)
 
   const regexPrice =
-    /^\d{1,3}(?:\.\d{3})*(?:,\d{2})?$|^\d{1,3}(?:,\d{3})*(?:\.\d{2})?$/
+    /^\d{1,3}(?:\.\d{3})*(?:,\d{1,2})?$|^\d{1,3}(?:,\d{3})*(?:\.\d{1,2})?$/
 
   function convertPriceToCents(priceToConvert) {
     priceToConvert = priceToConvert.replace(/\./g, '')
