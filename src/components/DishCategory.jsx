@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useFavorites } from '../hooks/favorites'
+import { useDebounceClick } from '../hooks/useDebounce'
 
 import { Card } from '../components/Card'
 import { Slider } from '../components/Embla/Slider'
@@ -25,9 +26,9 @@ export function DishCategory({ favorites, categories }) {
     navigate(`/dish/details/${id}`)
   }
 
-  async function handleFavorite(id) {
+  const handleFavorite = useDebounceClick(async (id) => {
     await toggle({ dishId: id })
-  }
+  }, 300)
 
   return (
     <Dish.Root>

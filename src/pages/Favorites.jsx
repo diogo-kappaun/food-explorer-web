@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 
 import { useFavorites } from '../hooks/favorites'
+import { useDebounceClick } from '../hooks/useDebounce'
 
 import { BackButton } from '../components/BackButton'
 import { Container } from '../components/Container'
@@ -17,9 +18,9 @@ export function Favorites() {
 
   const navigate = useNavigate()
 
-  async function handleFavorite(id) {
+  const handleFavorite = useDebounceClick(async (id) => {
     await toggle({ dishId: id })
-  }
+  }, 300)
 
   function handleDetails(id) {
     navigate(`/dish/details/${id}`)
