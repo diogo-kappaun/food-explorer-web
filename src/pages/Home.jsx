@@ -90,37 +90,36 @@ export function Home() {
     setFavoriteList(favorites)
   }, [data, favorites, debouncedSearch])
 
-  if (!data) {
-    return <Loading />
-  }
-
   return (
-    <Container>
-      <Header inputOn setSearch={setSearch} value={search} />
-      <Sidebar inputOn setSearch={setSearch} value={search} />
+    <>
+      {Boolean(data) || <Loading />}
+      <Container isLoading={Boolean(!data)}>
+        <Header inputOn setSearch={setSearch} value={search} />
+        <Sidebar inputOn setSearch={setSearch} value={search} />
 
-      <Section>
-        <div className="relative flex h-[100px] items-center justify-center rounded-md bg-[url('/src/assets/banner.png')] bg-cover bg-center shadow-sm lg:h-[132px]">
-          <div className="absolute h-[66px] w-[159px] bg-[url('/src/assets/logo.png')] bg-contain bg-center bg-no-repeat lg:h-[88px] lg:w-[212px]"></div>
-        </div>
+        <Section>
+          <div className="relative flex h-[100px] items-center justify-center rounded-md bg-[url('/src/assets/banner.png')] bg-cover bg-center shadow-sm lg:h-[132px]">
+            <div className="absolute h-[66px] w-[159px] bg-[url('/src/assets/logo.png')] bg-contain bg-center bg-no-repeat lg:h-[88px] lg:w-[212px]"></div>
+          </div>
 
-        <Separator />
+          <Separator />
 
-        {dishes &&
-          Object.values(dishes).map((categories) => {
-            if (categories.items.length < 1) {
-              return null
-            }
+          {dishes &&
+            Object.values(dishes).map((categories) => {
+              if (categories.items.length < 1) {
+                return null
+              }
 
-            return (
-              <DishCategory
-                key={categories.category}
-                favorites={favoriteList}
-                categories={categories}
-              />
-            )
-          })}
-      </Section>
-    </Container>
+              return (
+                <DishCategory
+                  key={categories.category}
+                  favorites={favoriteList}
+                  categories={categories}
+                />
+              )
+            })}
+        </Section>
+      </Container>
+    </>
   )
 }
