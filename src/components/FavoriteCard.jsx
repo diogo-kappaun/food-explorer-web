@@ -7,7 +7,7 @@ export function FavoriteCard({ data, onFavorite, onDetails }) {
     <div className="relative">
       <Button
         onClick={onFavorite}
-        className="absolute right-2 top-2 z-10"
+        className="absolute right-2 top-2 z-10 p-2"
         variant="ghost"
       >
         <PiStarFill size={20} className="text-primary" />

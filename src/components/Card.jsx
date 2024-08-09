@@ -12,16 +12,16 @@ export function Card({ data, isFavorite, onUpdate, onFavorite, onDetails }) {
     <div className="relative">
       <div className="absolute right-2 top-2 z-10 text-primary">
         {role === USER_ROLE.ADMIN ? (
-          <Button onClick={onUpdate} variant="ghost">
+          <Button className="p-2" onClick={onUpdate} variant="ghost">
             <PiPencil size={20} />
           </Button>
         ) : isFavorite ? (
-          <Button onClick={onFavorite} variant="ghost">
+          <Button className="p-2" onClick={onFavorite} variant="ghost">
             <PiStarFill size={20} />
           </Button>
         ) : (
-          <Button variant="ghost">
-            <PiStar onClick={onFavorite} size={20} />
+          <Button className="p-2" onClick={onFavorite} variant="ghost">
+            <PiStar size={20} />
           </Button>
         )}
       </div>
