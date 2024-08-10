@@ -52,25 +52,17 @@ export function Home() {
   }
 
   function filterDishCategory(dishes) {
-    return dishes.reduce(
-      (acc, item) => {
-        const category = item.category
-        if (!acc[category]) {
-          acc[category] = {
-            category,
-            items: [],
-          }
-        }
-        acc[category].items.push(item)
-        return acc
-      },
-      {
-        combo: {
-          category: 'combo',
+    return dishes.reduce((acc, item) => {
+      const category = item.category
+      if (!acc[category]) {
+        acc[category] = {
+          category,
           items: [],
-        },
-      },
-    )
+        }
+      }
+      acc[category].items.push(item)
+      return acc
+    }, {})
   }
 
   useEffect(() => {
@@ -103,8 +95,7 @@ export function Home() {
           </div>
 
           <Separator />
-
-          {dishes &&
+          {Object.values(dishes).length > 0 ? (
             Object.values(dishes).map((categories) => {
               if (categories.items.length < 1) {
                 return null
@@ -117,7 +108,10 @@ export function Home() {
                   categories={categories}
                 />
               )
-            })}
+            })
+          ) : (
+            <h2>Nenhum prato encontrado!</h2>
+          )}
         </Section>
       </Container>
     </>
