@@ -7,7 +7,7 @@ export default {
         sans: 'Inter, sans-serif',
       },
       colors: {
-        glass: 'hsla(0, 0%, 100%, 0.251)',
+        glass: '(var(--glass))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -59,7 +59,7 @@ export default {
         page: 'min(70rem, 100%)',
       },
       boxShadow: {
-        glass: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
+        glass: '0 8px 32px 0 var(--shadow-glass)',
       },
     },
   },

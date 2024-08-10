@@ -36,6 +36,10 @@
 
     --sb-track-color: hsl(0 0% 100%);
     --sb-thumb-color: hsl(0 0% 80%);
+
+    --shadow-glass: hsla(236, 63%, 33%, 0.37);
+    --glass: hsla(0, 0%, 100%, 0.251);
+    
     --sb-size: 4px;
   }
   
@@ -70,6 +74,8 @@
 
     --sb-track-color: hsl(20 7% 8%);
     --sb-thumb-color: hsl(30 8% 24%);
+
+    --glass: hsla(0, 0%, 100%, 0.13);
   }
 }
 
