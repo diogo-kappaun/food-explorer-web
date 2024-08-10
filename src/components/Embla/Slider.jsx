@@ -13,7 +13,7 @@ export function Slider({ children }) {
 
   return (
     <>
-      <div className="overflow-hidden" ref={emblaRef}>
+      <div className="cursor-grab overflow-hidden" ref={emblaRef}>
         <div className="-ml-4 flex">{children}</div>
       </div>
 
