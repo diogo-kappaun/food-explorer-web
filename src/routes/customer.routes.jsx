@@ -6,6 +6,7 @@ import { useAuth } from '../hooks/auth'
 import { DishDetails } from '../pages/DishDetails'
 import { Favorites } from '../pages/Favorites'
 import { Home } from '../pages/Home'
+import { NotFound } from '../pages/NotFound'
 import { Settings } from '../pages/Settings'
 
 export function CustomerRoutes() {
@@ -21,6 +22,7 @@ export function CustomerRoutes() {
       <Route path="/settings" element={<Settings />} />
       <Route path="/favorites" element={<Favorites />} />
       <Route path="/dish/details/:id" element={<DishDetails />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

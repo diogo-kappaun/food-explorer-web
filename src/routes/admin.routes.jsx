@@ -7,6 +7,7 @@ import { DishDetails } from '../pages/DishDetails'
 import { DishUpdate } from '../pages/DishUpdate'
 import { Home } from '../pages/Home'
 import { NewDish } from '../pages/NewDish'
+import { NotFound } from '../pages/NotFound'
 import { Settings } from '../pages/Settings'
 
 export function AdminRoutes() {
@@ -23,6 +24,7 @@ export function AdminRoutes() {
       <Route path="/dish/new" element={<NewDish />} />
       <Route path="/dish/update/:id" element={<DishUpdate />} />
       <Route path="/dish/details/:id" element={<DishDetails />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }
