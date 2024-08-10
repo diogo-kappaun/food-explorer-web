@@ -92,7 +92,7 @@ export function DishDetails() {
               </div>
               <div className="flex flex-1 flex-col items-center space-y-6 text-center lg:items-start lg:text-start">
                 <h2 className="text-xl font-bold lg:text-2xl">{data.name}</h2>
-                <p className="max-w-[400px] text-center indent-8 lg:max-w-full lg:text-justify">
+                <p className="max-w-[400px] text-center lg:max-w-full lg:text-justify">
                   {data.description}
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-3 rounded-lg border p-3 text-sm lg:justify-start">
