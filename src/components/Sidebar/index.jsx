@@ -48,7 +48,10 @@ export function Sidebar({ inputOn = false, setSearch, value }) {
         className="mt-6 flex flex-1 flex-col data-[state=closed]:hidden lg:mt-2 lg:data-[state=closed]:flex"
       >
         <div className="flex h-full flex-col gap-1">
-          <Form.Root className={`mb-4 lg:hidden ${inputOn ? '' : 'hidden'}`}>
+          <Form.Root
+            onSubmit={(e) => e.preventDefault()}
+            className={`mb-4 lg:hidden ${inputOn ? '' : 'hidden'}`}
+          >
             <Input.Root>
               <Input.Prefix>
                 <PiMagnifyingGlass size={20} />

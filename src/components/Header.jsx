@@ -12,6 +12,7 @@ export function Header({ inputOn = false, setSearch, value }) {
 
       <Form.Root
         className={`mx-auto hidden w-[30rem] lg:flex ${inputOn ? '' : 'lg:hidden'}`}
+        onSubmit={(e) => e.preventDefault()}
       >
         <Input.Root>
           <Input.Prefix>
