@@ -29,7 +29,7 @@ export function Sidebar({ inputOn = false, setSearch, value }) {
   const [open, setOpen] = useState(false)
 
   return (
-    <Collapsible.Root className="fixed left-0 right-0 top-0 z-10 flex flex-col border-b bg-background p-4 px-8 data-[state=open]:bottom-0 lg:relative lg:right-auto lg:h-full lg:border-r lg:px-4 lg:data-[state=closed]:bottom-0">
+    <Collapsible.Root className="fixed left-0 right-0 top-0 z-20 flex flex-col border-b bg-background p-4 px-8 data-[state=open]:bottom-0 lg:relative lg:right-auto lg:h-full lg:border-r lg:px-4 lg:data-[state=closed]:bottom-0">
       <div className="flex h-8 items-center justify-between rounded-md lg:fixed lg:top-3 lg:h-10 lg:border">
         <Logo className="w-6 lg:hidden" />
         <Collapsible.Trigger asChild>
