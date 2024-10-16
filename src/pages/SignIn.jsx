@@ -7,7 +7,9 @@ import * as Input from '../components/Input'
 
 import { Button } from '../components/Button'
 import { ButtonText } from '../components/ButtonText'
+import { Loading } from '../components/Loading'
 import { Logo } from '../components/Logo'
+
 import { useAuth } from '../hooks/auth'
 
 export function SignIn() {
@@ -19,17 +21,19 @@ export function SignIn() {
   const [isVisible, setIsVisible] = useState(false)
   const [isRunning, setIsRunning] = useState(false)
 
-  function handleSignIn() {
-    setIsRunning(true)
+  async function handleSignIn() {
+    try {
+      setIsRunning(true)
+      if (!email || !password) {
+        return toast.error('Preencha todos os campos!')
+      }
 
-    if (!email || !password) {
+      await signIn({ email, password })
+    } catch (error) {
+      console.log(error)
+    } finally {
       setIsRunning(false)
-      return toast.error('Preencha todos os campos!')
     }
-
-    signIn({ email, password })
-
-    setIsRunning(false)
   }
 
   function handlePasswordView() {
@@ -96,8 +100,8 @@ export function SignIn() {
 
           <ButtonText>Esqueci minha senha</ButtonText>
 
-          <Button disabled={isRunning} form="signup" onClick={handleSignIn}>
-            Continuar
+          <Button form="signup" onClick={handleSignIn}>
+            {isRunning ? <Loading /> : 'Continuar'}
           </Button>
 
           <span className="flex flex-wrap items-center justify-center gap-1 text-sm text-card-foreground">

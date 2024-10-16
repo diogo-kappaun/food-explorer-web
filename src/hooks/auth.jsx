@@ -11,27 +11,25 @@ export function AuthProvider({ children }) {
   const [data, setData] = useState({})
 
   async function signIn({ email, password }) {
-    api
-      .post('sessions', { email, password })
-      .then((response) => {
-        const { user, token } = response.data
+    try {
+      const response = await api.post('sessions', { email, password })
+      const { user, token } = response.data
 
-        api.defaults.headers.common.Authorization = `Bearer ${token}`
+      api.defaults.headers.common.Authorization = `Bearer ${token}`
 
-        localStorage.setItem('@foodexplorer:token', token)
-        localStorage.setItem('@foodexplorer:user', JSON.stringify(user))
+      localStorage.setItem('@foodexplorer:token', token)
+      localStorage.setItem('@foodexplorer:user', JSON.stringify(user))
 
-        const { role } = jwtDecode(token)
+      const { role } = jwtDecode(token)
 
-        setData({ token, user, role })
-      })
-      .catch((error) => {
-        if (error.response) {
-          return toast.error(error.response.data.message)
-        } else {
-          return toast.error('Não foi possível realizar o login!')
-        }
-      })
+      setData({ token, user, role })
+    } catch (error) {
+      if (error.response) {
+        return toast.error(error.response.data.message)
+      } else {
+        return toast.error('Não foi possível realizar o login!')
+      }
+    }
   }
 
   async function updateAvatar({ avatarFile }) {
